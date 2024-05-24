@@ -5,6 +5,7 @@ import { PropsWithChildren } from 'react';
 export default function Guest({ children }: PropsWithChildren) {
     return (
         <div className="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
+            <ApplicationLogo className="w-24 h-20" />
             <div className="w-full sm:max-w-md mt-6 p-6 bg-white shadow-md overflow-hidden sm:rounded-lg">
                 {children}
             </div>
