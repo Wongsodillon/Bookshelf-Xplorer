@@ -1,0 +1,8 @@
+.overlay {
+    background-color: rgba(0, 0, 0, 0.75);
+    transform: translateY(100%);
+}
+
+.book-container:hover .overlay {
+    transform: translateY(0);
+}
