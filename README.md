@@ -1,66 +1,39 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+### Login
+![LoginPage](https://github.com/Wongsodillon/Bookshelf-Xplorer/assets/81748327/93895eec-86a4-41c5-b769-e2b0adcbf511)
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+### Home
+![Home](https://github.com/Wongsodillon/Bookshelf-Xplorer/assets/81748327/c31d7851-f979-4013-910a-c78f5880fdac)
 
-## About Laravel
+### Books
+![BooksPage](https://github.com/Wongsodillon/Bookshelf-Xplorer/assets/81748327/adf528d2-050d-4f08-b40a-337368bd593e)
+![BookDetails](https://github.com/Wongsodillon/Bookshelf-Xplorer/assets/81748327/50b694d9-18ae-4345-95aa-67a8bbd825cf)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+### Lists
+![ListsPage](https://github.com/Wongsodillon/Bookshelf-Xplorer/assets/81748327/7e0fd78d-bb39-4342-886c-298dd35a8ba7)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### Profile
+![Profile](https://github.com/Wongsodillon/Bookshelf-Xplorer/assets/81748327/443ef87d-ad06-4a4e-8f45-521554dc96a9)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### Read Books
+![ReadBooks](https://github.com/Wongsodillon/Bookshelf-Xplorer/assets/81748327/0b96e045-9be8-4c4a-a6df-fa6fa5bc1b27)
 
-## Learning Laravel
+### My Lists
+![MyLists](https://github.com/Wongsodillon/Bookshelf-Xplorer/assets/81748327/5cbbc5e9-27bc-4633-a610-d0a4a4f08a54)
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### Edit my List
+![EditList](https://github.com/Wongsodillon/Bookshelf-Xplorer/assets/81748327/535d4bcc-e685-481e-b726-0dccb07be245)
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+### My Reviews
+![ReviewsPage](https://github.com/Wongsodillon/Bookshelf-Xplorer/assets/81748327/37abcfe0-4275-4244-ab2d-11900e0a34c3)
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Liked Reviews and Lists
+![LikedReviewsLists](https://github.com/Wongsodillon/Bookshelf-Xplorer/assets/81748327/107c7c6f-abd0-449a-a62f-6db752d53223)
 
-## Laravel Sponsors
+### Admin
+![AdminBooks](https://github.com/Wongsodillon/Bookshelf-Xplorer/assets/81748327/15e51819-ddd4-467f-9300-b524c84f0525)
+![AdminAddBooks](https://github.com/Wongsodillon/Bookshelf-Xplorer/assets/81748327/f9ecc1a1-b4c3-4558-be3a-516b1bae4d1d)
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### User Management
+![AdminUsers](https://github.com/Wongsodillon/Bookshelf-Xplorer/assets/81748327/556856c6-0cf9-4cfa-8a2e-7f9e2ae4b6db)
+![AdminUserDetails](https://github.com/Wongsodillon/Bookshelf-Xplorer/assets/81748327/77204cc8-b0ad-48c1-a82f-a335b67be138)
 
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
