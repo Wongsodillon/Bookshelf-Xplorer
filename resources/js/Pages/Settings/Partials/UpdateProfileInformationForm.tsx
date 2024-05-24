@@ -15,7 +15,6 @@ type UserInput = {
     name: string;
     email: string;
     about: string;
-    profile_pic_url: File | null;
 }
 
 export default function UpdateProfileInformation({ mustVerifyEmail, status, className = '' }: { mustVerifyEmail: boolean, status?: string, className?: string }) {
@@ -25,13 +24,8 @@ export default function UpdateProfileInformation({ mustVerifyEmail, status, clas
         username: user.username,
         name: user.name,
         email: user.email,
-        about: user.about,
-        profile_pic_url: null,
+        about: user.about
     });
-
-    const onDrop = (acceptedFiles: File[]) => {
-        setData('profile_pic_url', acceptedFiles[0])
-    };
 
     const { toastSuccess } = useToast()
 
@@ -46,10 +40,6 @@ export default function UpdateProfileInformation({ mustVerifyEmail, status, clas
         });
     };
 
-    useEffect(() => {
-        console.log(data)
-    }, [data.profile_pic_url])
-
     return (
         <section className={className}>
             <header>
@@ -60,16 +50,6 @@ export default function UpdateProfileInformation({ mustVerifyEmail, status, clas
             </header>
 
             <form onSubmit={submit} className="mt-6 space-y-6">
-                <div>
-                    <InputLabel className='text-xl mb-2 font-bold' htmlFor="profile-pic" value="Profile Picture" />
-                    <div className='flex gap-4 items-end'>
-                        <Dropzone onDrop={onDrop} img={user.profile_pic_url ? user.profile_pic_url : '/storage/profile-pic/none.jpg'} className='max-w-32 max-h-32 rounded-full' />
-                        {user.profile_pic_url && (
-                            <DangerButton type='button'>Remove</DangerButton>
-                        )}
-                    </div>
-                    <InputLabel value='Drag n Drop profile pic' className='mt-2 text-lg'/>
-                </div>
                 <div>
                     <InputLabel htmlFor="username" value="Username" />
                     <TextInput
