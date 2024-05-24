@@ -32,7 +32,7 @@ export default function MainLayout({ user, header, children }: PropsWithChildren
                         <div className="flex">
                             <div className="shrink-0 flex items-center">
                                 <Link href="/">
-                                    <ApplicationLogo className="block h-9 w-8 fill-current text-gray-800" />
+                                    <ApplicationLogo className="block h-8 w-10 fill-current text-gray-800" />
                                 </Link>
                             </div>
                             <div className="hidden space-x-8 sm:-my-px sm:ms-4 sm:flex">
