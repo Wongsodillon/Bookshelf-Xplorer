@@ -13,13 +13,30 @@ import "../Styles/custom.css";
 import BookCard from '@/Components/Cards/BookCard';
 
 type DashboardProps = PageProps & {
+    favorites: Books[];
     recommendations: Books[];
     recentlyViewed: Books[];
     topRated: Books[];
     mostLiked: Books[];
 };
 
-export default function Dashboard({ auth, recommendations, recentlyViewed, topRated, mostLiked }: DashboardProps) {
+export default function Dashboard({ auth, recommendations, favorites, recentlyViewed, topRated, mostLiked }: DashboardProps) {
+
+    function generateMessage() {
+        if (favorites.length === 0 && auth) {
+            return "Recommendations";
+        }
+        else if (favorites.length === 0 && !auth) {
+            return "You haven't liked any books yet. Sign in to like books and get recommendations.";
+        }
+        const selectedFavorites = favorites.slice(0, 2);
+
+        const favoriteTitles = selectedFavorites.map(book => book.book_title);
+
+        const favoriteTitlesString = favoriteTitles.join(' & ');
+
+        return "Since you liked " + favoriteTitlesString;
+    }
 
     return (
         <MainLayout
@@ -35,7 +52,7 @@ export default function Dashboard({ auth, recommendations, recentlyViewed, topRa
                     </div>
                     <br />
                     <div className='bg-white p-8 shadow-sm sm:rounded-lg'>
-                        <p className='text-3xl font-semibold text-gray-800'>Recommendations</p>
+                        <p className='text-2xl font-semibold text-gray-800'>{generateMessage()}</p>
                         <br />
                         <BookSlider books={recommendations}/>
                     </div>

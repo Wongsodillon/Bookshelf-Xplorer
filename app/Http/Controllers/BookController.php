@@ -11,6 +11,7 @@ use App\Models\Rating;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Inertia\Inertia;
@@ -35,7 +36,6 @@ class BookController extends Controller
     public function DashBoard()
     {
         $user = Auth::user();
-        $recommendations = Book::with(['genres', 'ratings'])->inRandomOrder()->take(8)->get();
         $topRated = Book::with(['genres', 'ratings'])
             ->join('ratings', 'books.id', '=', 'ratings.book_id')
             ->select('books.*', DB::raw('AVG(ratings.rating) as avg_rating'))->orderByDesc('avg_rating')
@@ -46,8 +46,21 @@ class BookController extends Controller
             ->orderByDesc('likes_count')
             ->take(8)
             ->get();
+        $favorites = [];
+        try {
+            $response = Http::post('http://127.0.0.1:5000/recommend-books', [
+                'user_id' => $user->id,
+            ])->json();
+            $recommendations = Book::with(['genres', 'ratings'])->whereIn('id', $response["recommendation"])->get();
+            $favorites = Book::whereIn('id', $response["favorite"])->get();
+        }
+        catch (\Exception $e) {
+            $recommendations = Book::with(['genres', 'ratings'])->inRandomOrder()->take(8)->get();
+        }
+
         if (!$user) {
             return Inertia::render('Dashboard', [
+                'favorites' => $favorites,
                 'recommendations' => $recommendations,
                 'topRated' => $topRated,
                 'mostLiked' => $mostLiked,
@@ -58,10 +71,8 @@ class BookController extends Controller
             $query->where('user_id', $user->id);
         })->with(['genres', 'ratings'])->get();
 
-        // $topRated = Book::with(['genres', 'ratings'])
-        //     ->get();
-
         return Inertia::render('Dashboard', [
+            'favorites' => $favorites,
             'recommendations' => $recommendations,
             'recentlyViewed' => $recentlyViewed,
             'topRated' => $topRated,
