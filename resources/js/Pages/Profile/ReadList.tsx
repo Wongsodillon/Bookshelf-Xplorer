@@ -16,6 +16,8 @@ const ReadList = ({ books, genres, publishers }: ReadListPageProps) => {
 
     const { genre, setGenre, publisher, setPublisher, release, setRelease, sortByValues, filteredBooks } = useFilter({ books, sortOptions: ['When Added'] });
 
+    console.log(books)
+
     return (
         <ProfileLayout>
             <div className="flex flex-col sm:flex-row gap-4 bg-white sm:bg-transparent mb-8">

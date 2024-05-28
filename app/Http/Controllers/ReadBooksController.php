@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\DB;
 class ReadBooksController extends Controller
 {
     public function GetReadBooks($userId) {
-        $books = Book::with(['genres', 'publisher', 'userLike'])
+        $books = Book::with(['genres', 'publisher', 'userLike', 'ratings'])
             ->whereHas('readBooks', function($query) use ($userId) {
                 $query->where('user_id', $userId);
             })

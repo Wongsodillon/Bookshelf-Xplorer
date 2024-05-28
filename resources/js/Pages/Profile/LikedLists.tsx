@@ -14,6 +14,7 @@ const LikedLists = ({ lists, user }: LikedListsProps) => {
 
     return (
         <Liked>
+            {lists.length == 0 && <p className="text-2xl text-center font-bold py-8">No liked lists yet</p>}
             {lists.map(list => (
                 <ListCard list={list} key={list.id} />
             ))}

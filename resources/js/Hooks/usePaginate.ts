@@ -36,7 +36,7 @@ const usePaginate = <T>({ itemsPerPage, items }: IPagination<T>) => {
 
     useEffect(() => {
         updateItemsToShow();
-    }, [currentPage]);
+    }, [currentPage, items]);
 
     useEffect(() => {
         if (currentPage > maxPage) {
@@ -46,7 +46,7 @@ const usePaginate = <T>({ itemsPerPage, items }: IPagination<T>) => {
         }
     }, [currentPage, maxPage]);
 
-    return { currentPage, maxPage, nextPage, prevPage, itemsToShow };
+    return { currentPage, maxPage, nextPage, prevPage, itemsToShow, itemsPerPage };
 }
 
 export default usePaginate;

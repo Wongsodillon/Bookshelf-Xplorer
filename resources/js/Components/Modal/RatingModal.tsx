@@ -25,7 +25,7 @@ const RatingModal = ({ show, onClose, book, userRating }: RatingModalProps) => {
         errors: ''
     })
 
-    const { toast } = useToast()
+    const { toastSuccess } = useToast()
 
     const addRating: FormEventHandler = e => {
         e.preventDefault()
@@ -33,7 +33,7 @@ const RatingModal = ({ show, onClose, book, userRating }: RatingModalProps) => {
         post(route('ratings.add', { id: data.book_id }), {
             preserveScroll: true,
             onSuccess: () => {
-                toast("Rating added!")
+                toastSuccess("Rating added!")
                 onClose()
                 reset()
             }

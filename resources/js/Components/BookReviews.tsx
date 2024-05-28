@@ -8,8 +8,11 @@ import Rating from "./UI/Rating";
 import ReviewModal from "./Modal/ReviewModal";
 import DangerButton from "./UI/DangerButton";
 import PrimaryButton from "./UI/PrimaryButton";
+import usePaginate from "@/Hooks/usePaginate";
 import DeleteReviewConfirmationModal from "./Modal/DeleteReviewConfirmationModal";
 import YourReview from "./Cards/YourReview";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import Pagination from "./Pagination";
 
 type BookDetailsProps = {
     reviews: Review[];
@@ -25,8 +28,10 @@ const BookReviews = ({ reviews, book }: BookDetailsProps) => {
     const closeReviewModal = () => setShowAddReviewModal(false)
     const openReviewModal = () => setShowAddReviewModal(true)
 
-    const closeDeleteModal = () => setShowDeleteModal(false)
-    const openDeleteModal = () => setShowDeleteModal(true)
+    const { currentPage, nextPage, prevPage, itemsToShow, maxPage, itemsPerPage } = usePaginate<Review>({
+        itemsPerPage: 5,
+        items: reviews
+    })
 
     return (
         <div className="flex flex-col">
@@ -42,9 +47,10 @@ const BookReviews = ({ reviews, book }: BookDetailsProps) => {
                <YourReview review={yourReview} refetch={fetchYourReview} openReviewModal={openReviewModal} />
             }
             <div className="flex flex-col gap-4 mt-4">
-                {reviews && reviews.map(review => <ReviewCard key={review.id} review={review} />)}
+                {reviews && itemsToShow.map(review => <ReviewCard key={review.id} review={review} />)}
             </div>
             <ReviewModal onClose={closeReviewModal} show={showAddReviewModal} book={book} refetch={fetchYourReview}/>
+            <Pagination currentPage={currentPage} itemsPerPage={itemsPerPage} totalItems={reviews.length} prevPage={prevPage} nextPage={nextPage} />
         </div>
     );
 }

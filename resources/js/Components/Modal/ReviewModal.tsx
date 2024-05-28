@@ -24,7 +24,7 @@ const ReviewModal = ({ show, onClose, book, refetch }: ReviewModalProps) => {
     const user = usePage<PageProps>().props.auth.user
 
     const [value, setValue] = useState<number | null>(book.user_rating ? book.user_rating.rating : 0);
-    const { toast, toastError } = useToast()
+    const { toast, toastError, toastSuccess } = useToast()
     const { data, setData, post, errors, reset } = useForm({
         rating: value,
         book_id: book.id,
@@ -39,7 +39,7 @@ const ReviewModal = ({ show, onClose, book, refetch }: ReviewModalProps) => {
         post(route('reviews.add', { id: book.id }), {
             preserveScroll: true,
             onSuccess: () => {
-                toast("Review added successfully")
+                toastSuccess("Review added successfully")
                 reset()
                 onClose()
                 refetch()

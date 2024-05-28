@@ -56,8 +56,6 @@ const ProfileLayout = ({ children }: PropsWithChildren<{ children: ReactNode }>)
         });
     }
 
-    console.log(user)
-
     return (
         <MainLayout user={auth}
             header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">Profile</h2>}

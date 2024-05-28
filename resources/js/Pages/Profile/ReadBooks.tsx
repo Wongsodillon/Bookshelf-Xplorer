@@ -18,6 +18,8 @@ const ReadBooks = ({ books, genres, publishers }: ReadBooksPageProps) => {
 
     const { genre, setGenre, publisher, setPublisher, release, setRelease, sortByValues, likeOptions, likedOnly, setLikedOnly, filteredBooks } = useFilter({ books, sortOptions: ['Your Highest Rating', 'Your Lowest Rating'] });
 
+    console.log(books)
+
     return (
         <ProfileLayout>
             <div className="flex flex-col sm:flex-row gap-4 bg-white sm:bg-transparent mb-8">

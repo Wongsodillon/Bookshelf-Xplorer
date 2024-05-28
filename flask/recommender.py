@@ -1,9 +1,9 @@
 import mysql.connector
 import pandas as pd
 import numpy as np
+import random
 from scipy.sparse import csr_matrix
 from sklearn.neighbors import NearestNeighbors
-from sklearn.metrics.pairwise import cosine_similarity
 
 db_config = {
     'user': 'root',
@@ -85,6 +85,7 @@ class BookRecommender:
             similar_ids += self.find_similar_books(book, k)
 
         similar_ids = list(set(similar_ids) - rated_books)
+        random.shuffle(similar_ids)
         return similar_ids, favorite_books.tolist()
 
     def close_connection(self):

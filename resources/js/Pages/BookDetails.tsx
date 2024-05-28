@@ -25,7 +25,7 @@ const BookDetails = ({ auth, book, reviews, lists }: BookDetailsProps) => {
     const [showRatingModal, setShowRatingModal] = useState(false)
     const [showAddToListModal, setShowAddToListModal] = useState(false)
 
-    const { toast, toastError } = useToast()
+    const { toast, toastError, toastSuccess } = useToast()
 
     const { post:postReadlist, delete:removeReadlist } = useForm({
         book_id: book.id,
@@ -58,7 +58,7 @@ const BookDetails = ({ auth, book, reviews, lists }: BookDetailsProps) => {
         e.preventDefault()
         postReadlist(route('readlist.add', { id: book.id }), {
             preserveScroll: true,
-            onSuccess: () => toast("Book added to Readlist!")
+            onSuccess: () => toastSuccess("Book added to Readlist!")
         })
     }
 
@@ -66,7 +66,7 @@ const BookDetails = ({ auth, book, reviews, lists }: BookDetailsProps) => {
         e.preventDefault()
         removeReadlist(route('readlist.remove', { id: book.id }), {
             preserveScroll: true,
-            onSuccess: () => toast("Book removed from Readlist!")
+            onSuccess: () => toastSuccess("Book removed from Readlist!")
         })
     }
 
@@ -74,7 +74,7 @@ const BookDetails = ({ auth, book, reviews, lists }: BookDetailsProps) => {
         e.preventDefault()
         postLike(route('likes.add', { id: book.id }), {
             preserveScroll: true,
-            onSuccess: () => toast("Book liked!")
+            onSuccess: () => toastSuccess("Book liked!")
         })
     }
 
@@ -82,7 +82,7 @@ const BookDetails = ({ auth, book, reviews, lists }: BookDetailsProps) => {
         e.preventDefault()
         removeLike(route('likes.remove', { id: book.id }), {
             preserveScroll: true,
-            onSuccess: () => toast("Book unliked!")
+            onSuccess: () => toastSuccess("Book unliked!")
         })
     }
 
@@ -90,7 +90,7 @@ const BookDetails = ({ auth, book, reviews, lists }: BookDetailsProps) => {
         e.preventDefault()
         postRead(route('readbooks.add', { id: book.id }), {
             preserveScroll: true,
-            onSuccess: () => toast("Book marked as read!")
+            onSuccess: () => toastSuccess("Book marked as read!")
         })
     }
 
@@ -98,7 +98,7 @@ const BookDetails = ({ auth, book, reviews, lists }: BookDetailsProps) => {
         e.preventDefault()
         removeRead(route('readbooks.remove', { id: book.id }), {
             preserveScroll: true,
-            onSuccess: () => toast("Book marked as unread!"),
+            onSuccess: () => toastSuccess("Book marked as unread!"),
             onError: () => toastError("Can't mark book as unread if there is activity on it")
         })
     }

@@ -36,10 +36,6 @@ const ReviewCard = ({ review }: ReviewCardProps) => {
         })
     }
 
-    useEffect(() => {
-
-    }, [])
-
     return (
         <div key={review.id} className="pb-4 flex flex-col gap-2 border-b-2 border-gray-200">
             <div className="flex flex-col gap-1 sm:flex-row sm:gap-4">
