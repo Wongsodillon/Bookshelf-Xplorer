@@ -9,8 +9,8 @@ type PaginationProps = {
 
 const Pagination = ({ currentPage, itemsPerPage, totalItems, prevPage, nextPage }: PaginationProps) => {
     return (
-        <div className="mt-8 flex items-center justify-between">
-            <p>
+        <div className="sm:mt-8 mt-4 flex flex-col-reverse gap-4 sm:flex-row items-center justify-between">
+            <p className="text-lg">
                 Showing {(currentPage - 1) * itemsPerPage + 1} to {Math.min(currentPage * itemsPerPage, totalItems)} of {totalItems}
             </p>
             <div className="flex justify-center gap-8">

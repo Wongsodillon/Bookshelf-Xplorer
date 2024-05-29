@@ -191,7 +191,7 @@ export default function MainLayout({ user, header, children }: PropsWithChildren
                         }
                         {user ?
                             <div className="mt-3 space-y-1">
-                                <ResponsiveNavLink href={route('profile.index')}>Profile</ResponsiveNavLink>
+                                <ResponsiveNavLink href={route('profile.user', { username: user.username })}>Profile</ResponsiveNavLink>
                                 <ResponsiveNavLink href={route('profile.edit')}>Settings</ResponsiveNavLink>
                                 { user.role === 'admin' && <ResponsiveNavLink href={route('admin.dashboard')}>Admin</ResponsiveNavLink>}
                                 <ResponsiveNavLink href={route('logout')} method="post" as="button">
