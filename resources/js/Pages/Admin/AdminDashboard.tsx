@@ -19,11 +19,6 @@ const AdminDashboard = ({ auth, books }: BooksPageProps) => {
 
     const searchedBooks = books.filter(book => book.book_title.toLowerCase().includes(search.toLowerCase()));
 
-    const { currentPage, nextPage, prevPage, itemsToShow, maxPage } = usePaginate<Books>({
-        itemsPerPage: 5,
-        items: searchedBooks
-    });
-
     const onOpen = (book: Books) => {
         setSelectedBook(book);
         setShowModal(true);
@@ -39,22 +34,19 @@ const AdminDashboard = ({ auth, books }: BooksPageProps) => {
 
     return (
         <AdminLayout user={auth.user} header="Dashboard">
-                <div className="flex mb-8 gap-8 mt-1 justify-between">
-                    <TextInput
-                        placeholder="Search books"
-                        className="w-full"
-                        onChange={e => setSearch(e.target.value)}
-                    />
-                    <div className="flex items-center bg-white px-3 rounded-lg border border-gray-300">
-                        <button onClick={prevPage}>
-                            <FaChevronLeft size={20} className="text-gray-600 cursor-pointer hover:text-black"/>
-                        </button>
-                        <p className="mx-2 text-gray-600 text-nowrap select-none">{currentPage} / {maxPage}</p>
-                        <button onClick={nextPage} >
-                            <FaChevronRight size={20} className="text-gray-600 hover:text-black"/>
-                        </button>
+
+            <form className="w-full mx-auto mb-8">
+                <label className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
+                <div className="relative">
+                    <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                        <svg className="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+                        </svg>
                     </div>
+                    <input type="search" id="default-search" className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search for Books" onChange={e => setSearch(e.target.value)} />
                 </div>
+            </form>
+
                 <Table>
                     <TableHeader>
                         <TableRow>
@@ -67,7 +59,7 @@ const AdminDashboard = ({ auth, books }: BooksPageProps) => {
                         </TableRow>
                     </TableHeader>
                     <TableBody>
-                        {itemsToShow.map(book => (
+                        {searchedBooks.map(book => (
                             <TableRow key={book.id}>
                                 <TableCell>{book.id}</TableCell>
                                 <TableCell>

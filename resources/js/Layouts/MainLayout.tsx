@@ -1,4 +1,4 @@
-import { useState, PropsWithChildren, ReactNode, FormEventHandler } from 'react';
+import { useState, PropsWithChildren, ReactNode, FormEventHandler, useRef, useEffect } from 'react';
 import ApplicationLogo from '@/Components/UI/ApplicationLogo';
 import Dropdown from '@/Components/UI/Dropdown';
 import NavLink from '@/Components/UI/NavLink';
@@ -10,7 +10,8 @@ import { User } from '@/types';
 export default function MainLayout({ user, header, children }: PropsWithChildren<{ user: User, header?: ReactNode }>) {
 
     const [showingNavigationDropdown, setShowingNavigationDropdown] = useState(false);
-
+    const [isScrolled, setIsScrolled] = useState(false);
+    const headerRef = useRef<HTMLDivElement>(null);
     const { data, setData, post, processing, errors, reset } = useForm({
         search: '',
     })
@@ -24,9 +25,25 @@ export default function MainLayout({ user, header, children }: PropsWithChildren
         post(route('search', { search: data.search }))
     }
 
+    useEffect(() => {
+        const handleScroll = () => {
+            const headerHeight = (headerRef.current?.clientHeight || 0);
+            if (window.scrollY > headerHeight) {
+                setIsScrolled(true);
+            } else {
+                setIsScrolled(false);
+            }
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
+
     return (
         <div className="min-h-screen bg-gray-100">
-            <nav className="bg-white border-b border-gray-100">
+            <nav className={`bg-white border-b border-gray-100 z-40 fixed w-full transition-shadow duration-300 ${isScrolled ? 'shadow-lg' : ''}`}>
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex justify-between h-16">
                         <div className="flex">
@@ -52,16 +69,16 @@ export default function MainLayout({ user, header, children }: PropsWithChildren
                             </div>
                         </div>
                         <div className="hidden sm:flex sm:items-center sm:ms-6">
-                            <form onSubmit={onSearch} className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex items-center">
-                                <TextInput
-                                    id="search"
-                                    type="search"
-                                    name="search"
-                                    className="max-h-10"
-                                    placeholder='Search...'
-                                    autoComplete='false'
-                                    onChange={e => setData('search', e.target.value)}
-                                />
+                            <form onSubmit={onSearch} className="hidden sm:min-w-96 sm:flex items-center">
+                                <div className="relative w-full">
+                                    <input className="block p-2.5 w-full z-20 text-sm text-gray-900 rounded-e-lg rounded-md border border-gray-300 focus:ring-blue-500 focus:border-blue-500" placeholder="Search..." onChange={e => setData('search', e.target.value)} />
+                                    <button type="submit" className="absolute top-0 end-0 py-2.5 px-4 text-sm font-medium h-full text-white bg-blue-700 rounded-e-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
+                                        <svg className="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                                            <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+                                        </svg>
+                                        <span className="sr-only">Search</span>
+                                    </button>
+                                </div>
                             </form>
                             <div className="ms-3 relative">
                                 <Dropdown>
@@ -139,14 +156,15 @@ export default function MainLayout({ user, header, children }: PropsWithChildren
 
                 <div className={(showingNavigationDropdown ? 'block' : 'hidden') + ' sm:hidden'}>
                     <form className="py-2 px-4" onSubmit={onSearch}>
-                        <TextInput
-                            id="search"
-                            type="search"
-                            name="search"
-                            className="max-h-10 w-full"
-                            placeholder='Search...'
-                            onChange={e => setData('search', e.target.value)}
-                        />
+                        <div className="relative w-full">
+                            <input className="block p-2.5 w-full z-20 text-sm text-gray-900 rounded-e-lg rounded-md border border-gray-300 focus:ring-blue-500 focus:border-blue-500" placeholder="Search..." onChange={e => setData('search', e.target.value)} />
+                            <button type="submit" className="absolute top-0 end-0 py-2.5 px-4 text-sm font-medium h-full text-white bg-blue-700 rounded-e-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
+                                <svg className="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+                                </svg>
+                                <span className="sr-only">Search</span>
+                            </button>
+                        </div>
                     </form>
                     <div className='pt-4 pb-1 border-t border-gray-200'>
                         <div className='mt-3 space-y-2'>
@@ -190,14 +208,14 @@ export default function MainLayout({ user, header, children }: PropsWithChildren
                     </div>
                 </div>
             </nav>
-
             {header && (
-                <header className="bg-white shadow">
+                <header ref={headerRef} className="bg-white shadow pt-16">
                     <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">{header}</div>
                 </header>
             )}
 
-            <main>{children}</main>
+
+            <main className={header ? '' : 'pt-16'}>{children}</main>
         </div>
     );
 }

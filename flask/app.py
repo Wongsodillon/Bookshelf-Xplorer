@@ -21,7 +21,6 @@ def recommend():
     user_id = data['user_id']
     recommendation, favorite_books = book_recommender.recommend(user_id=user_id)
     recommendation = [str(book_id) for book_id in recommendation]
-    print(recommendation)
     return jsonify({
         'recommendation': recommendation,
         'favorite': favorite_books

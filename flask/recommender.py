@@ -5,13 +5,6 @@ import random
 from scipy.sparse import csr_matrix
 from sklearn.neighbors import NearestNeighbors
 
-db_config = {
-    'user': 'root',
-    'password': '',
-    'host': '127.0.0.1',
-    'database': 'bookshelf_xplorer'
-}
-
 class BookRecommender:
     def __init__(self, db_config):
         self.connection = mysql.connector.connect(**db_config)
@@ -28,12 +21,14 @@ class BookRecommender:
         self.rating_query = '''
             SELECT *
             FROM ratings
-            ORDER BY user_id, updated_at
+            ORDER BY updated_at DESC
         '''
 
     def fetch_ratings_and_books(self):
         ratings = pd.read_sql(self.rating_query, self.connection)
         books = pd.read_sql(self.book_query, self.connection)
+        books.to_csv('books.csv')
+        ratings.to_csv('ratings.csv')
         return ratings, books
 
     def create_matrix(self, ratings):
@@ -76,7 +71,7 @@ class BookRecommender:
         if df.empty:
             return []
 
-        rated_books = set(df['book_id'])  # Set of books already rated by the user
+        rated_books = set(df['book_id'])
 
         favorite_books = df[df['rating'] == max(df['rating'])]['book_id']
         similar_ids = []

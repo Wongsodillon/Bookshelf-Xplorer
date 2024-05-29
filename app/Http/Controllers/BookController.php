@@ -53,6 +53,9 @@ class BookController extends Controller
             ])->json();
             $recommendations = Book::with(['genres', 'ratings'])->whereIn('id', $response["recommendation"])->get();
             $favorites = Book::whereIn('id', $response["favorite"])->get();
+            $favorites = $favorites->sortBy(function($book) use ($response) {
+                return array_search($book->id, $response["favorite"]);
+            })->values();
         }
         catch (\Exception $e) {
             $recommendations = Book::with(['genres', 'ratings'])->inRandomOrder()->take(8)->get();
