@@ -40,13 +40,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/books', [BookController::class, 'BooksPage'])->name('books.index');
 Route::get('/all-books/{request_count}', [BookController::class, 'AllBooks'])->name('books.all');
 Route::get("/", [BookController::class, 'Dashboard'])->name('dashboard');
-Route::get('/books/{id}', [BookController::class, "BookDetails"])->name('book.details');
 Route::get('/search-books/{search}', [BookController::class, 'Search'])->name('search');
 Route::match(['get', 'post'], '/search/{search}', [BookController::class, 'SearchPage'])->name('search');
 Route::get('/lists', [ListController::class, 'GetLists'])->name('lists.index');
 
 // ReadList
 Route::middleware("auth")->group(function() {
+    Route::get('/books/{id}', [BookController::class, "BookDetails"])->name('book.details');
     Route::get('/profile/{username}/readlist', [ReadListController::class, 'GetReadList'])->name('readlist.index');
     Route::post("/readlist/{id}", [ReadListController::class, "AddToReadList"])->name("readlist.add");
     Route::delete("/readlist/{id}", [ReadListController::class, "RemoveFromReadList"])->name("readlist.remove");

@@ -10,9 +10,10 @@ CORS(app)
 
 book_recommender = BookRecommender(db_config={
     'user': 'root',
-    'password': '',
-    'host': '127.0.0.1',
-    'database': 'bookshelf_xplorer'
+    'password': 'nRnGBssJToqexDRxUHzrforYFxfzQXWn',
+    'host': 'viaduct.proxy.rlwy.net',
+    'database': 'railway',
+    'port':19175
 })
 
 @app.route("/recommend-books", methods=["POST"])

@@ -14,7 +14,7 @@ const ProfilePic = ({ img, size }: ProfilePicProps) => {
     }, [])
 
     return (
-        <img src={profilePic} className={`h-${size}] w-${size} rounded-full`} />
+        <img src={profilePic} className={`h-${size} w-${size} rounded-full`} />
     );
 }
 
