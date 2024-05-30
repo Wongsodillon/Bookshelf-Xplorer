@@ -37,9 +37,9 @@ class BookController extends Controller
     {
         $user = Auth::user();
         $topRated = Book::with(['genres', 'ratings'])
-            ->join('ratings', 'books.id', '=', 'ratings.book_id')
-            ->select('books.*', DB::raw('AVG(ratings.rating) as avg_rating'))->orderByDesc('avg_rating')
-            ->groupBy('books.id', 'books.book_title', 'books.book_author', 'books.book_description', 'books.book_cover_url', 'books.book_publish_date', 'books.book_page', 'books.publisher_id', 'books.created_at', 'books.updated_at')
+            // ->join('ratings', 'books.id', '=', 'ratings.book_id')
+            // ->select('books.*', DB::raw('AVG(ratings.rating) as avg_rating'))->orderByDesc('avg_rating')
+            // ->groupBy('books.id', 'books.book_title', 'books.book_author', 'books.book_description', 'books.book_cover_url', 'books.book_publish_date', 'books.book_page', 'books.publisher_id', 'books.created_at', 'books.updated_at')
             ->take(8)->get();
         $mostLiked = Book::with(['genres', 'likes'])
             ->withCount('likes')
