@@ -15,7 +15,7 @@ type LikedReviewsProps = PageProps & {
 const LikedReviews = ({ auth, reviews, user = auth.user }: LikedReviewsProps) => {
 
     const { currentPage, nextPage, prevPage, itemsToShow, maxPage, itemsPerPage } = usePaginate<Review>({
-        itemsPerPage: 3,
+        itemsPerPage: 5,
         items: reviews
     })
 

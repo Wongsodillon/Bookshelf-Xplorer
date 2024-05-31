@@ -34,6 +34,8 @@ const ReviewModal = ({ show, onClose, book, refetch }: ReviewModalProps) => {
         has_spoilers: false,
     })
 
+    console.log(book.user_rating)
+
     const onSubmit: FormEventHandler = e => {
         e.preventDefault()
         post(route('reviews.add', { id: book.id }), {
@@ -54,6 +56,10 @@ const ReviewModal = ({ show, onClose, book, refetch }: ReviewModalProps) => {
             setData('review', book.user_review ? book.user_review.review : '')
         }
     }, [show])
+
+    useEffect(() => {
+        setData('rating', value)
+    }, [value])
 
     return (
         <Modal show={show} onClose={onClose}>

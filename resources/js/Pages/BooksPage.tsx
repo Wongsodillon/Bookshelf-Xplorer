@@ -17,26 +17,34 @@ const BooksPage = ({ auth, books, genres, publishers }: BooksPageProps ) => {
         >
             <Head title="Books" />
             <div className="py-8 px-4 sm:px-8">
-                <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                    <div className="flex flex-col sm:flex-row gap-4 bg-white sm:bg-transparent mb-8">
-                        <FilterDropdown
-                            options={genres.map(genre => genre.genre_name)}
-                            value={genre}
-                            setvalue={setGenre}
-                        />
-                        <FilterDropdown
-                            options={publishers.map(publisher => publisher.publisher_name)}
-                            value={publisher}
-                            setvalue={setPublisher}
-                        />
-                        <FilterDropdown
-                            options={sortByValues}
-                            value={release}
-                            setvalue={setRelease}
-                            includeAll={false}
-                        />
+                <div className="max-w-7xl relative flex-col md:flex-row flex gap-4 mx-auto sm:px-6 lg:px-8">
+                    <div className="flex lg:min-w-60 sm:min-w-48 flex-col bg-white sm:bg-transparent mb-8">
+                        <div className="sticky w-full top-24">
+                            <FilterDropdown
+                                options={genres.map(genre => genre.genre_name)}
+                                value={genre}
+                                setvalue={setGenre}
+                                fullWidth={true}
+                                withBorder={false}
+                            />
+                            <FilterDropdown
+                                options={publishers.map(publisher => publisher.publisher_name)}
+                                value={publisher}
+                                setvalue={setPublisher}
+                                fullWidth={true}
+                                withBorder={false}
+                            />
+                            <FilterDropdown
+                                options={sortByValues}
+                                value={release}
+                                setvalue={setRelease}
+                                includeAll={false}
+                                fullWidth={true}
+                                withBorder={false}
+                            />
+                        </div>
                     </div>
-                    <div className="grid grid-cols-2 gap-8 lg:grid-cols-5 md:grid-cols-4">
+                    <div className="grid grid-cols-3 gap-4 md:gap-2 lg:gap-6 lg:grid-cols-4 md:grid-cols-3">
                         {filteredBooks.map(book => (
                             <BookCard key={book.id} book={book} className={'w-full'} />
                         ))}

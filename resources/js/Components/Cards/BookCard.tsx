@@ -16,9 +16,9 @@ const BookCard = ({ book, className, displayRatings = true }: { book: Books, cla
         <div key={book.id} onClick={() => handleClick()} className={"book-container max-h-96 relative overflow-hidden hover:cursor-pointer " + className}>
             <img src={book.book_cover_url} alt="Book" className="w-full h-full rounded-md"/>
             <Overlay>
-                <p className="text-white text-center text-base sm:text-lg">{book.book_title}</p>
+                <p className="text-white text-center text-base sm:text-md lg:text-lg">{book.book_title}</p>
                 <br />
-                <p className="text-white text-center text-base sm:text-md">Genre: {book.genres.map(genre => genre.genre_name).join(', ')}</p>
+                <p className="text-white text-center text-base sm:text-sm">Genre: {book.genres.map(genre => genre.genre_name).join(', ')}</p>
                 <br />
                 {book.ratings && displayRatings &&
                     <div className="flex items-center gap-2">

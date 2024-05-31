@@ -85,11 +85,3 @@ class BookRecommender:
 
     def close_connection(self):
         self.connection.close()
-
-recommender = BookRecommender(db_config={
-    'user': 'root',
-    'password': '',
-    'host': '127.0.0.1',
-    'database': 'bookshelf_xplorer'
-})
-print(recommender.recommend(user_id=1))
