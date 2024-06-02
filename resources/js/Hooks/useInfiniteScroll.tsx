@@ -1,9 +1,9 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, createRef } from "react";
 
 const useInfiniteScroll = () => {
     const [isIntersecting, setIsIntersecting] = useState(false);
     const [fetch, setFetch] = useState(true);
-    const endRef = useRef<HTMLDivElement>(null);
+    const endRef = createRef<HTMLDivElement>();
 
     useEffect(() => {
         const observer = new IntersectionObserver(entry => {
@@ -21,12 +21,14 @@ const useInfiniteScroll = () => {
         }
     }, [])
 
-    if (isIntersecting) {
-        console.log('Intersecting')
-    }
-    else {
-        console.log('fNot intersecting')
-    }
+    useEffect(() => {
+        if (isIntersecting) {
+            console.log('Intersecting')
+        }
+        else {
+            console.log('Not intersecting')
+        }
+    }, [isIntersecting])
 
     return { isIntersecting, fetch, setFetch, endRef }
 

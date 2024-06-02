@@ -27,8 +27,6 @@ export default function Login({ status, isBanned, canResetPassword }: { status?:
         post(route('login'));
     };
 
-    console.log(route('google.redirect'))
-
     return (
         <GuestLayout>
             <Head title="Log in" />

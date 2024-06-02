@@ -13,6 +13,8 @@ import DeleteReviewConfirmationModal from "./Modal/DeleteReviewConfirmationModal
 import YourReview from "./Cards/YourReview";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import Pagination from "./Pagination";
+import useFilterReviews from "@/Hooks/useFilterReviews";
+import FilterDropdown from "./FilterDropdown";
 
 type BookDetailsProps = {
     reviews: Review[];
@@ -25,12 +27,15 @@ const BookReviews = ({ reviews, book }: BookDetailsProps) => {
     const [showDeleteModal, setShowDeleteModal] = useState(false)
     const { data:yourReview, loading: loadingYourReview, error: errorYourReview, fetchData: fetchYourReview } = useFetch<Review>(`/your-review/${book.id}`)
 
+    const { sortBy, setSortBy, sortByOptions, filterByOptions, filterBy, setFilterBy, filteredReviews } = useFilterReviews({ reviews })
+
     const closeReviewModal = () => setShowAddReviewModal(false)
     const openReviewModal = () => setShowAddReviewModal(true)
 
     const { currentPage, nextPage, prevPage, itemsToShow, maxPage, itemsPerPage } = usePaginate<Review>({
         itemsPerPage: 5,
-        items: reviews
+        items: filteredReviews,
+        scrollToTop: 240
     })
 
     return (
@@ -46,11 +51,27 @@ const BookReviews = ({ reviews, book }: BookDetailsProps) => {
             {yourReview &&
                <YourReview review={yourReview} refetch={fetchYourReview} openReviewModal={openReviewModal} />
             }
+            <div className="flex flex-col sm:flex-row gap-4 bg-white sm:bg-transparent my-4">
+                <FilterDropdown
+                    options={sortByOptions.map(s => s)}
+                    value={sortBy}
+                    setvalue={setSortBy}
+                    fullWidth={true}
+                    includeAll={false}
+                />
+                <FilterDropdown
+                    options={filterByOptions.map(fb => fb)}
+                    value={filterBy}
+                    setvalue={setFilterBy}
+                    fullWidth={true}
+                    includeAll={false}
+                />
+            </div>
             <div className="flex flex-col gap-4 mt-4">
                 {reviews && itemsToShow.map(review => <ReviewCard key={review.id} review={review} />)}
             </div>
             <ReviewModal onClose={closeReviewModal} show={showAddReviewModal} book={book} refetch={fetchYourReview}/>
-            <Pagination currentPage={currentPage} itemsPerPage={itemsPerPage} totalItems={reviews.length} prevPage={prevPage} nextPage={nextPage} />
+            <Pagination currentPage={currentPage} itemsPerPage={itemsPerPage} totalItems={filteredReviews.length} prevPage={prevPage} nextPage={nextPage} />
         </div>
     );
 }

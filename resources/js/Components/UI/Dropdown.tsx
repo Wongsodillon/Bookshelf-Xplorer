@@ -85,7 +85,7 @@ const Content = ({ align = 'right', width = '48', contentClasses = 'py-1 bg-whit
                     onClick={() => setOpen(false)}
                     ref={contentRef}
                 >
-                    <div className={`rounded-md ring-1 ring-black ring-opacity-5 ` + contentClasses}>{children}</div>
+                    <div className={`rounded-md z-[10000] max-h-64 overflow-y-scroll ring-1 ring-black ring-opacity-5 ` + contentClasses}>{children}</div>
                 </div>
             </Transition>
         </>

@@ -19,6 +19,8 @@ const Profile = ({ recentlyLiked, readList, ratings }: ProfileProps) => {
         setPercentages(arrangeRatingData())
     }, [])
 
+    const user = usePage().props.user as User;
+
     const [percentages, setPercentages] = useState<{ rating: number; ratingCount: number }[]>([]);
 
     const { toast } = useToast()
@@ -49,7 +51,7 @@ const Profile = ({ recentlyLiked, readList, ratings }: ProfileProps) => {
             </div>
             <br />
             <div className="shadow-sm sm:rounded-lg flex flex-col md:flex-row gap-12">
-                <div className="flex-1">
+                <div className="flex-1" onClick={() => router.visit(`/profile/${user.username}/readlist`)}>
                     <p className='text-2xl font-semibold text-gray-800 mb-4'>Readlist</p>
                     <BookPreview books={readList} />
                 </div>

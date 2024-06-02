@@ -5,21 +5,24 @@ import { BooksPageProps, Books } from "@/types";
 import useFilter from "@/Hooks/useFilter";
 import BookCard from "@/Components/Cards/BookCard";
 import FilterDropdown from "@/Components/FilterDropdown";
+import useInfiniteScroll from "@/Hooks/useInfiniteScroll";
 import '../Styles/custom.css'
 
 const BooksPage = ({ auth, books, genres, publishers }: BooksPageProps ) => {
 
     const { genre, setGenre, publisher, setPublisher, release, setRelease, sortByValues, filteredBooks } = useFilter({ books });
 
+    const { isIntersecting, endRef } = useInfiniteScroll()
+
     return (
         <MainLayout user={auth.user}
             header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">Books</h2>}
         >
             <Head title="Books" />
-            <div className="py-8 px-4 sm:px-8">
-                <div className="max-w-7xl relative flex-col md:flex-row flex gap-4 mx-auto sm:px-6 lg:px-8">
-                    <div className="flex lg:min-w-60 sm:min-w-48 flex-col bg-white sm:bg-transparent mb-8">
-                        <div className="sticky w-full top-24">
+            <div className="py-4 md:py-6 px-4 sm:px-8">
+                <div className="max-w-7xl relative flex-col md:flex-row flex md:gap-6 mx-auto sm:px-6 lg:px-8">
+                    <div className="flex z-50 lg:min-w-60 sm:min-w-48 flex-col bg-white sm:bg-transparent mb-8">
+                        <div className="sticky w-full top-20">
                             <FilterDropdown
                                 options={genres.map(genre => genre.genre_name)}
                                 value={genre}
@@ -49,6 +52,7 @@ const BooksPage = ({ auth, books, genres, publishers }: BooksPageProps ) => {
                             <BookCard key={book.id} book={book} className={'w-full'} />
                         ))}
                     </div>
+                    <div ref={endRef}></div>
                 </div>
             </div>
         </MainLayout>

@@ -3,9 +3,10 @@ import { useState, useEffect } from "react";
 interface IPagination<T> {
     items: T[];
     itemsPerPage: number;
+    scrollToTop?: number;
 }
 
-const usePaginate = <T>({ itemsPerPage, items }: IPagination<T>) => {
+const usePaginate = <T>({ itemsPerPage, items, scrollToTop = window.scrollY }: IPagination<T>) => {
 
     const [currentPage, setCurrentPage] = useState<number>(1);
     const [maxPage, setMaxPage] = useState<number>(Math.ceil(items.length / itemsPerPage));
@@ -20,12 +21,14 @@ const usePaginate = <T>({ itemsPerPage, items }: IPagination<T>) => {
     const nextPage = () => {
         if (currentPage < maxPage) {
             setCurrentPage(currentPage + 1);
+            window.scrollTo(0, scrollToTop)
         }
     }
 
     const prevPage = () => {
         if (currentPage > 1) {
             setCurrentPage(currentPage - 1);
+            window.scrollTo(0, scrollToTop)
         }
     }
 
@@ -37,6 +40,10 @@ const usePaginate = <T>({ itemsPerPage, items }: IPagination<T>) => {
     useEffect(() => {
         updateItemsToShow();
     }, [currentPage, items]);
+
+    useEffect(() => {
+        setCurrentPage(1)
+    }, [items])
 
     useEffect(() => {
         if (currentPage > maxPage) {
