@@ -16,7 +16,7 @@ const UserReviews = ({ auth, reviews, user = auth.user }: UserReviewsProps) => {
     const { sortBy, setSortBy, sortByOptions, filterByOptions, filterBy, setFilterBy, filteredReviews } = useFilterReviews({ reviews })
 
     const { currentPage, nextPage, prevPage, itemsToShow, maxPage, itemsPerPage } = usePaginate<Review>({
-        itemsPerPage: 10,
+        itemsPerPage: 5,
         items: filteredReviews
     })
 

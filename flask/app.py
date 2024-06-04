@@ -7,8 +7,6 @@ from recommender import BookRecommender
 app = Flask(__name__)
 CORS(app)
 
-
-
 @app.route("/recommend-books", methods=["POST"])
 def recommend():
     book_recommender = BookRecommender(db_config={

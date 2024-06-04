@@ -25,9 +25,9 @@ const YourReview = ({ review, refetch, openReviewModal }: YourReviewProps) => {
                 <p className="text-xl font-bold">You reviewed this book on {formatDate(review.created_at)}</p>
                 <Rating count={review.rating} like={false} />
             </div>
-            <div>
-                <p>{review.review}</p>
-                <p>{review.likes_count} people liked your review</p>
+            <div className="mt-1 mb-2">
+                <p className="text-lg mb-2">{review.review}</p>
+                <p className="text-gray-500">{review.likes_count} people liked your review</p>
             </div>
             <div className="flex gap-6">
                 <PrimaryButton onClick={openReviewModal}>Edit</PrimaryButton>
