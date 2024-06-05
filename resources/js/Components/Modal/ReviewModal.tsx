@@ -61,6 +61,12 @@ const ReviewModal = ({ show, onClose, book, refetch }: ReviewModalProps) => {
         setData('rating', value)
     }, [value])
 
+    useEffect(() => {
+        setData('rating', value)
+    }, [])
+
+    console.log(data.rating, value)
+
     return (
         <Modal show={show} onClose={onClose}>
             <form className="p-6 flex flex-col items-start gap-3" onSubmit={onSubmit}>

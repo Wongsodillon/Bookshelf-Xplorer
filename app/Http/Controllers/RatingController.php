@@ -64,10 +64,22 @@ class RatingController extends Controller
             $book->readBooks()->attach($userId);
         }
 
+        $updateData = [
+            'review' => $review,
+            'has_spoiler' => $hasSpoilers,
+            'created_at' => now(),
+            'updated_at' => now()
+        ];
+
+        if ($rating != 0) {
+            $updateData['rating'] = $rating;
+        }
+
         DB::table('ratings')->updateOrInsert(
             ['book_id' => $bookId, 'user_id' => $userId],
-            ['review' => $review, 'rating' => $rating, 'has_spoiler' => $hasSpoilers, 'created_at' => now(), 'updated_at' => now()]
+            $updateData
         );
+
         return redirect()->back()->with("success", "Review saved");
     }
 
