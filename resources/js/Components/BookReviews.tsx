@@ -35,7 +35,8 @@ const BookReviews = ({ reviews, book }: BookDetailsProps) => {
     const { currentPage, nextPage, prevPage, itemsToShow, maxPage, itemsPerPage } = usePaginate<Review>({
         itemsPerPage: 5,
         items: filteredReviews,
-        scrollToTop: 240
+        scrollToTop: 240,
+        restartPage: false
     })
 
     return (

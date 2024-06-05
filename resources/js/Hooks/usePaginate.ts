@@ -4,9 +4,10 @@ interface IPagination<T> {
     items: T[];
     itemsPerPage: number;
     scrollToTop?: number;
+    restartPage?: boolean;
 }
 
-const usePaginate = <T>({ itemsPerPage, items, scrollToTop = window.scrollY }: IPagination<T>) => {
+const usePaginate = <T>({ itemsPerPage, items, scrollToTop = window.scrollY, restartPage = true }: IPagination<T>) => {
 
     const [currentPage, setCurrentPage] = useState<number>(1);
     const [maxPage, setMaxPage] = useState<number>(Math.ceil(items.length / itemsPerPage));
@@ -42,7 +43,7 @@ const usePaginate = <T>({ itemsPerPage, items, scrollToTop = window.scrollY }: I
     }, [currentPage, items]);
 
     useEffect(() => {
-        setCurrentPage(1)
+        setCurrentPage(restartPage ? 1 : currentPage);
     }, [items])
 
     useEffect(() => {

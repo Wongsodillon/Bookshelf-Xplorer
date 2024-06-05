@@ -25,7 +25,7 @@ const ReviewCard = ({ review }: ReviewCardProps) => {
     const likeReview: FormEventHandler = e => {
         e.preventDefault()
         post(route('review.like'), {
-            preserveScroll: true
+            preserveScroll: true,
         })
     }
 
