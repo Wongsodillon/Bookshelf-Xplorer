@@ -27,7 +27,7 @@ export default function Dashboard({ auth, recommendations, favorites, recentlyVi
             return "Sign in to like books and get recommendations.";
         }
         else if (favorites.length === 0 && auth) {
-            return "Like books and get recommendations";
+            return "Recommendations";
         }
         const selectedFavorites = favorites.slice(0, 2);
 
