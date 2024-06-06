@@ -73,7 +73,7 @@ class BookRecommender:
 
         rated_books = set(df['book_id'])
 
-        favorite_books = df[df['rating'] == max(df['rating'])]['book_id']
+        favorite_books = df[df['rating'] >= 4]['book_id']
         similar_ids = []
 
         for book in favorite_books:

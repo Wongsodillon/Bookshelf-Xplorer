@@ -24,10 +24,10 @@ export default function Dashboard({ auth, recommendations, favorites, recentlyVi
 
     function generateMessage() {
         if (favorites.length === 0 && !auth) {
-            return "You haven't liked any books yet. Sign in to like books and get recommendations.";
+            return "Sign in to like books and get recommendations.";
         }
         else if (favorites.length === 0 && auth) {
-            return "Recommendations.";
+            return "Like books and get recommendations";
         }
         const selectedFavorites = favorites.slice(0, 2);
 
@@ -47,7 +47,7 @@ export default function Dashboard({ auth, recommendations, favorites, recentlyVi
 
             <div className="py-8 px-4 sm:px-8">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                    
+
                     <div className='bg-white p-8 shadow-sm sm:rounded-lg'>
                         <p className='text-2xl font-semibold text-gray-800'>{generateMessage()}</p>
                         <br />
