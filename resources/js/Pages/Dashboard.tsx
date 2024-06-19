@@ -23,11 +23,8 @@ type DashboardProps = PageProps & {
 export default function Dashboard({ auth, recommendations, favorites, recentlyViewed, topRated, mostLiked }: DashboardProps) {
 
     function generateMessage() {
-        if (favorites.length === 0 && !auth) {
+        if (favorites.length === 0 && auth) {
             return "Sign in to like books and get recommendations.";
-        }
-        else if (favorites.length === 0 && auth) {
-            return "Recommendations";
         }
         const selectedFavorites = favorites.slice(0, 2);
 

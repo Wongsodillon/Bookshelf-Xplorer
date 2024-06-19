@@ -19,6 +19,11 @@ const AdminDashboard = ({ auth, books }: BooksPageProps) => {
 
     const searchedBooks = books.filter(book => book.book_title.toLowerCase().includes(search.toLowerCase()));
 
+    const { currentPage, nextPage, prevPage, itemsToShow, maxPage, itemsPerPage } = usePaginate<Books>({
+        itemsPerPage: 5,
+        items: searchedBooks
+    })
+
     const onOpen = (book: Books) => {
         setSelectedBook(book);
         setShowModal(true);
