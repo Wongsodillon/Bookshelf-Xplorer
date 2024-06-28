@@ -21,7 +21,7 @@ const BooksPage = ({ auth, books, genres, publishers }: BooksPageProps ) => {
             <Head title="Books" />
             <div className="py-4 md:py-6 px-4 sm:px-8">
                 <div className="max-w-7xl relative flex-col md:flex-row flex md:gap-6 mx-auto sm:px-6 lg:px-8">
-                    <div className="flex z-50 lg:min-w-60 sm:min-w-48 flex-col bg-white sm:bg-transparent mb-8">
+                    <div className="flex lg:min-w-60 sm:min-w-48 flex-col bg-white sm:bg-transparent mb-8">
                         <div className="sticky w-full top-20">
                             <FilterDropdown
                                 options={genres.map(genre => genre.genre_name)}

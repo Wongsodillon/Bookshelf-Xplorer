@@ -3,6 +3,8 @@
     transform: translateY(100%);
 }
 
-.book-container:hover .overlay {
-    transform: translateY(0);
+@media (min-width: 768px) {
+    .book-container:hover .overlay {
+        transform: translateY(0);
+    }
 }
