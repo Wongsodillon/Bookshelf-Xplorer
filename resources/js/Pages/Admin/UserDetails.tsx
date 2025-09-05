@@ -14,8 +14,6 @@ type UserDetailsProps = PageProps & {
 
 const UserDetails = ({ auth, user, reviews }: UserDetailsProps) => {
 
-    console.log(reviews)
-
     const [showDeleteModal, setShowDeleteModal] = useState(false);
     const [reviewToDelete, setReviewToDelete] = useState<Review | null>(reviews ? reviews[0] : null);
 

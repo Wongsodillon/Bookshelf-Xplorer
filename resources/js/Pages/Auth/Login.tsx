@@ -30,20 +30,19 @@ export default function Login({ status, isBanned, canResetPassword }: { status?:
     return (
         <GuestLayout>
             <Head title="Log in" />
-            <p className='text-2xl font-bold mb-6'>Login to your account</p>
+            <p className='text-2xl text-white font-bold mb-6'>Login to your account</p>
             <a href={route('google.redirect')}>
-                <SecondaryButton className='gap-2 justify-center w-full py-3' >
+                <SecondaryButton className='gap-2 justify-center w-full py-3 text-white'>
                     <img className="w-6 h-6" src="https://www.svgrepo.com/show/475656/google-color.svg" />
                     Login with Google
                 </SecondaryButton>
             </a>
             <div className='flex items-center gap-4 my-4'>
-                <hr className='w-full border-t-2 border-slate-200' />
+                <hr className='w-full border-t-2 border-slate-400' />
                 <span className='text-slate-400'>or</span>
-                <hr className='w-full border-t-2 border-slate-200' />
+                <hr className='w-full border-t-2 border-slate-400' />
             </div>
             <form onSubmit={submit}>
-
                 <div>
                     <InputLabel htmlFor="email" value="Email or Username" />
                     <TextInput
@@ -56,7 +55,6 @@ export default function Login({ status, isBanned, canResetPassword }: { status?:
                         isFocused={true}
                         onChange={(e) => setData('username_or_email', e.target.value)}
                     />
-
                     <InputError message={errors.username_or_email} className="mt-2" />
                 </div>
 
@@ -84,20 +82,20 @@ export default function Login({ status, isBanned, canResetPassword }: { status?:
                             checked={data.remember}
                             onChange={(e) => setData('remember', e.target.checked)}
                         />
-                        <span className="ms-2 text-sm text-gray-600">Remember me</span>
+                        <span className="ms-2 text-sm text-slate-400">Remember me</span>
                     </label>
                     {canResetPassword && (
                         <Link
                             href={route('password.request')}
-                            className="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                            className="underline text-sm text-slate-400 hover:text-white rounded-md focus:outline-none"
                         >
-                            Forgot your password?
+                            Forgot Password?
                         </Link>
                     )}
                 </div>
 
                 <div className="flex items-center justify-end mt-4">
-                    <Link href={route('register')} className='underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'>
+                    <Link href={route('register')} className='underline text-sm text-slate-400 hover:text-white focus:outline-none'>
                         Don't have an account?
                     </Link>
                     <PrimaryButton className="ms-4 px-6" disabled={processing}>

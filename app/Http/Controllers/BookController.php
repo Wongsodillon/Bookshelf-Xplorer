@@ -47,19 +47,7 @@ class BookController extends Controller
             ->take(8)
             ->get();
         $favorites = [];
-        try {
-            $response = Http::post('http://127.0.0.1:5000/recommend-books', [
-                'user_id' => $user->id,
-            ])->json();
-            $recommendations = Book::with(['genres', 'ratings'])->whereIn('id', $response["recommendation"])->inRandomOrder()->take(8)->get();
-            $favorites = Book::whereIn('id', $response["favorite"])->get();
-            $favorites = $favorites->sortBy(function($book) use ($response) {
-                return array_search($book->id, $response["favorite"]);
-            })->values();
-        }
-        catch (\Exception $e) {
-            $recommendations = Book::with(['genres', 'ratings'])->inRandomOrder()->take(8)->get();
-        }
+        $recommendations = Book::with(['genres', 'ratings'])->inRandomOrder()->take(8)->get();
 
         if (!$user) {
             return Inertia::render('Dashboard', [

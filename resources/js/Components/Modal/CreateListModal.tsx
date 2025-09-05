@@ -30,7 +30,6 @@ const CreateListModal = ({ show, onClose }: CreateListModalProps) => {
 
     useEffect(() => {
         setData('list_is_public', privacy == 'Anyone - Public List' ? 1 : 0)
-        console.log(privacy)
     }, [privacy])
 
     const handleSubmit: FormEventHandler = (e) => {

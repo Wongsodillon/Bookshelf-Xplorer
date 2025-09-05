@@ -3,6 +3,10 @@
     transform: translateY(100%);
 }
 
+p {
+    @apply text-white;
+}
+
 @media (min-width: 768px) {
     .book-container:hover .overlay {
         transform: translateY(0);

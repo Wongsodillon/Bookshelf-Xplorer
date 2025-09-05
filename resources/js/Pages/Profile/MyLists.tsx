@@ -27,8 +27,6 @@ const MyLists = ({ auth, lists, user = auth.user }: MyListsProps) => {
         setShowCreateModal(false)
     }
 
-    console.log(lists)
-
     return (
         <ProfileLayout >
             <div className="flex gap-4 my-8">

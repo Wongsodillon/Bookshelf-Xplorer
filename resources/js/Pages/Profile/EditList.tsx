@@ -43,7 +43,6 @@ const EditList = ({ list, books }: EditListProps) => {
 
     const handleSubmit: FormEventHandler = e => {
         e.preventDefault();
-        console.log(data)
         patch(route('lists.update', { id: list.id }), {
             preserveScroll: true,
             onSuccess: () => toastSuccess('List has been updated'),
@@ -64,7 +63,6 @@ const EditList = ({ list, books }: EditListProps) => {
 
     useEffect(() => {
         setData('list_is_public', privacy == 'Anyone - Public List' ? 1 : 0)
-        console.log(privacy)
     }, [privacy])
 
     useEffect(() => {
@@ -130,12 +128,13 @@ const EditList = ({ list, books }: EditListProps) => {
                 <div className="mt-16">
                     <p className="text-2xl">Books</p>
                     <SortableBooks books={listBooks} setBooks={setListBooks}/>
-                    <div onClick={onOpen} className="flex items-center w-full min-h-24 justify-center bg-white border border-gray-200 p-2 mt-2 cursor-pointer">
-                        <p className="text-bold text-xl ">+ Add Books</p>
+                    <div onClick={onOpen} className="group border border-transparent flex items-center w-full min-h-24 justify-center bg-dark-blue-secondary p-2 mt-2 cursor-pointer hover:border-light-blue transition-colors duration-300"
+                    >
+                    <p className="text-bold text-xl text-slate-400 group-hover:text-light-blue transition-colors duration-300">Add Books</p>
                     </div>
                 </div>
                 <div className="flex gap-2 mt-8 sm:gap-8">
-                    <SecondaryButton onClick={handleCancel}>
+                    <SecondaryButton className="text-white" onClick={handleCancel}>
                         Cancel
                     </SecondaryButton>
                     <PrimaryButton>

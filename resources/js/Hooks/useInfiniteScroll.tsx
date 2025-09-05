@@ -21,17 +21,7 @@ const useInfiniteScroll = () => {
         }
     }, [])
 
-    useEffect(() => {
-        if (isIntersecting) {
-            console.log('Intersecting')
-        }
-        else {
-            console.log('Not intersecting')
-        }
-    }, [isIntersecting])
-
     return { isIntersecting, fetch, setFetch, endRef }
-
 }
 
 export default useInfiniteScroll;

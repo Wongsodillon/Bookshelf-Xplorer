@@ -38,7 +38,7 @@ const DeleteReviewConfirmationModal = ({ show, onClose, review, refetch }: Delet
     return (
         <Modal show={show} onClose={onClose}>
             <form className="p-6" onSubmit={onSubmit}>
-                <p className="text-xl text-red-600 mb-2">Delete Review</p>
+                <p className="text-xl text-danger mb-2">Delete Review</p>
                 <p className="text-xl mb-2">{review.review}</p>
                 <p className="text-gray-500">Are you sure you want to delete this review?</p>
                 <div className="flex justify-end gap-4 mt-4">

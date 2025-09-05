@@ -43,7 +43,7 @@ const RatingModal = ({ show, onClose, book, userRating }: RatingModalProps) => {
     return (
         <Modal show={show} onClose={onClose} maxWidth="xl">
             <form className="p-6 flex flex-col items-center gap-2">
-                <p className="text-lg text-orange-400">Rate this book</p>
+                <p className="text-lg text-light-blue">Rate this book</p>
                 <p className="text-2xl">{book.book_title}</p>
                 <Rating
                     name="simple-controlled"
@@ -53,6 +53,11 @@ const RatingModal = ({ show, onClose, book, userRating }: RatingModalProps) => {
                         setData('rating', newValue)
                     }}
                     className="mb-2"
+                    sx={{
+                        '& .MuiRating-iconEmpty': {
+                        color: 'white',
+                        },
+                    }}
                 />
                 <PrimaryButton onClick={addRating}>
                     Rate

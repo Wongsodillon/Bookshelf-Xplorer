@@ -5,12 +5,11 @@ import PrimaryButton from "../UI/PrimaryButton";
 const SearchCard = ({ book }: { book: Books }) => {
 
     const handleClick = () => {
-        console.log(book.id)
         router.visit(`/books/${book.id}`)
     }
 
     return (
-        <div className="flex gap-4 border-b-2 border-gray-200 py-4">
+        <div className="flex gap-4 border-b-2 border-dark-blue-secondary py-4">
             <div className='w-36 h-52 cursor-pointer'>
                 <img src={book.book_cover_url} alt="Book" className="object-fit w-full h-full" />
             </div>

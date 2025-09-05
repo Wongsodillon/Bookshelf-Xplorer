@@ -20,8 +20,8 @@ const ListCard = ({ list, mine = false }: ListCardProps) => {
                 <BookPreview books={list.list_details.map(detail => detail.book)} className="flex-1 min-h-48" count={4}/>
                 <div className="flex flex-col gap-2 flex-1">
                     <div className="flex justify-between">
-                        <h1 onClick={() => GoToListDetails(list.id)} className="text-xl md:text-2xl font-semibold cursor-pointer">{list.list_name}</h1>
-                        {mine && <Link href={route('lists.edit', { id: list.id })} className="text-blue-500">Edit</Link>}
+                        <p onClick={() => GoToListDetails(list.id)} className="text-xl md:text-2xl font-semibold cursor-pointer">{list.list_name}</p>
+                        {mine && <Link href={route('lists.edit', { id: list.id })} className="text-light-blue">Edit</Link>}
                     </div>
                     {!list.is_public &&
                         <div className="flex items-center gap-3">
@@ -35,9 +35,9 @@ const ListCard = ({ list, mine = false }: ListCardProps) => {
                             <ProfilePic size={6} img={list.user.profile_pic_url}/>
                             <p className="text-gray-500">Created by {list.user.name}</p>
                         </div>}
-                        <p>{list.list_details.length} Books</p>
+                        <p className="text-slate-400">{list.list_details.length} Books</p>
                     </div>
-                    <p className="">{list.liked_lists_count} Likes</p>
+                    <p className="text-slate-400">{list.liked_lists_count} Likes</p>
                 </div>
             </div>
         </div>

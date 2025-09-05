@@ -8,7 +8,6 @@ import { FaStar } from "react-icons/fa"
 const BookCard = ({ book, className, displayRatings = true }: { book: Books, className: string, displayRatings?: boolean }) => {
 
     const handleClick = () => {
-        console.log(book.id)
         router.visit(`/books/${book.id}`)
     }
 

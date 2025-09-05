@@ -58,27 +58,27 @@ const ProfileLayout = ({ children }: PropsWithChildren<{ children: ReactNode }>)
 
     return (
         <MainLayout user={auth}
-            header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">Profile</h2>}
+            header={<h2 className="font-semibold text-xl text-white leading-tight">Profile</h2>}
         >
             <div className="py-8 px-4 sm:px-8">
-                <div className="max-w-6xl mx-auto py-6 px-6 lg:py-8 lg:px-16 bg-white shadow sm:rounded-lg">
+                <div className="max-w-6xl mx-auto py-6 px-6 lg:py-8 lg:px-16 bg-dark-blue shadow sm:rounded-lg">
                     <div className="flex sm:flex-row gap-1 flex-col justify-between items-start sm:gap-4 sm:justify-between">
                         <div className="flex items-center gap-4">
                             <ProfilePic img={user.profile_pic_url} size={16} />
                             <div className="flex flex-col cursor-default">
                                 <p className="text-lg font-bold sm:text-xl">{user.name}</p>
-                                <p className="text-md text-gray-600">@{user.username}</p>
+                                <p className="text-md text-slate-400">@{user.username}</p>
                             </div>
                             {auth.id === user.id ? (
-                                <Link href={route("profile.edit")} className="bg-gray-600 py-2 px-3 text-sm border border-transparent rounded-md text-white hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 transition ease-in-out duration-150">Edit Profile</Link>
+                                <Link href={route("profile.edit")} className="bg-slate-500 py-2 px-3 text-sm border border-transparent rounded-md text-white hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 transition ease-in-out duration-150">Edit Profile</Link>
                             ) : (
                                 isFollowed ? (
                                     <form onSubmit={unfollow}>
-                                        <button disabled={processing} type="submit" className="bg-gray-600 py-2 px-3 text-sm border border-transparent rounded-md text-white hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 transition ease-in-out duration-150" >Unfollow</button>
+                                        <button disabled={processing} type="submit" className="bg-slate-500 py-2 px-3 text-sm border border-transparent rounded-md text-white hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 transition ease-in-out duration-150" >Unfollow</button>
                                     </form>
                                 ) : (
                                     <form onSubmit={follow}>
-                                        <button disabled={processing} type="submit" className="bg-gray-600 py-2 px-3 text-sm border border-transparent rounded-md text-white hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 transition ease-in-out duration-150" >Follow</button>
+                                        <button disabled={processing} type="submit" className="bg-slate-500 py-2 px-3 text-sm border border-transparent rounded-md text-white hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 transition ease-in-out duration-150" >Follow</button>
                                     </form>
                                 )
                             )}
@@ -107,7 +107,7 @@ const ProfileLayout = ({ children }: PropsWithChildren<{ children: ReactNode }>)
                     <div className="-me-2 flex items-center sm:hidden mb-2">
                         <button
                             onClick={() => setShowingNavigationDropdown((previousState) => !previousState)}
-                            className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out"
+                            className="inline-flex items-center justify-center p-2 rounded-md text-light-blue hover:text-light-blue-hover focus:outline-none transition duration-150 ease-in-out"
                         >
                             <svg className="h-6 w-6 mr-4" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                                 <path
@@ -161,7 +161,7 @@ const ProfileLayout = ({ children }: PropsWithChildren<{ children: ReactNode }>)
                         </div>
                     </div>
                     <div className={(showingNavigationDropdown ? 'block' : 'hidden') + ' sm:hidden'}>
-                        <div className='pt-2 pb-1 border-t border-gray-200'>
+                        <div className='pt-2 pb-1 border-t border-dark-blue-secondary'>
                             <div className='mt-3 space-y-2'>
                                 <ResponsiveNavLink href={route('profile.user', { username: user.username })} active={route().current('profile.user')}>
                                     Profile

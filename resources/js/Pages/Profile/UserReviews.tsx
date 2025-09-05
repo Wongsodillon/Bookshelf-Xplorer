@@ -22,8 +22,8 @@ const UserReviews = ({ auth, reviews, user = auth.user }: UserReviewsProps) => {
 
     return (
         <ProfileLayout>
-            {reviews.length == 0 && <p className="text-2xl text-center font-bold py-8">No reviews yet</p>}
-            <div className="flex flex-col sm:flex-row gap-4 bg-white sm:bg-transparent mb-4 ml-2">
+            {reviews.length == 0 && <p className="text-2xl text-center text-white font-bold py-8">No reviews yet</p>}
+            <div className="flex flex-col sm:flex-row gap-4 mb-4 ml-2">
                 <FilterDropdown
                     options={sortByOptions.map(s => s)}
                     value={sortBy}

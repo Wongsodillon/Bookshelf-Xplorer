@@ -23,8 +23,6 @@ const Profile = ({ recentlyLiked, readList, ratings }: ProfileProps) => {
 
     const [percentages, setPercentages] = useState<{ rating: number; ratingCount: number }[]>([]);
 
-    const { toast } = useToast()
-
     const arrangeRatingData = () => {
         let totalCount = 0;
         const result = [];
@@ -45,18 +43,18 @@ const Profile = ({ recentlyLiked, readList, ratings }: ProfileProps) => {
     return (
         <ProfileLayout>
             <div className='shadow-sm sm:rounded-lg'>
-                <p className='text-3xl font-semibold text-gray-800'>Recently Liked</p>
+                <p className='text-3xl font-semibold text-white'>Recently Liked</p>
                 <br />
                 <BookSlider books={recentlyLiked}/>
             </div>
             <br />
             <div className="shadow-sm sm:rounded-lg flex flex-col md:flex-row gap-12">
                 <div className="flex-1" onClick={() => router.visit(`/profile/${user.username}/readlist`)}>
-                    <p className='text-2xl font-semibold text-gray-800 mb-4'>Readlist</p>
+                    <p className='text-2xl font-semibold text-white mb-4'>Readlist</p>
                     <BookPreview books={readList} />
                 </div>
                 <div className="flex-1">
-                    <p className='text-2xl font-semibold text-gray-800 mb-4'>Ratings</p>
+                    <p className='text-2xl font-semibold text-white mb-4'>Ratings</p>
                     {percentages.length > 0 &&
                         <div className="flex-col items-start">
                             <RatingBar percentage={percentages[4]} />

@@ -21,12 +21,12 @@ const SearchPage = ({ auth, search, books, genres, publishers }: SearchPageProps
 
     return (
         <MainLayout user={auth.user}
-            header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">{message}</h2>}
+            header={<p className="font-semibold text-xl leading-tight">{message}</p>}
         >
             <div className="py-8 px-4 sm:px-8">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
                     <p className="text-2xl">Books</p>
-                    <div className="flex flex-col sm:flex-row gap-4 bg-white sm:bg-transparent my-6">
+                    <div className="flex flex-col sm:flex-row gap-4 my-6">
                         <FilterDropdown
                             value={genre}
                             setvalue={setGenre}

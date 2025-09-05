@@ -16,24 +16,25 @@ const ReadList = ({ books, genres, publishers }: ReadListPageProps) => {
 
     const { genre, setGenre, publisher, setPublisher, release, setRelease, sortByValues, filteredBooks } = useFilter({ books, sortOptions: ['When Added'] });
 
-    console.log(books)
-
     return (
         <ProfileLayout>
-            <div className="flex flex-col sm:flex-row gap-4 bg-white sm:bg-transparent mb-8">
+            <div className="flex flex-col sm:flex-row gap-4 mb-8">
                 <FilterDropdown
                     options={genres.map(genre => genre.genre_name)}
                     value={genre}
+                    fullWidth={true}
                     setvalue={setGenre}
                 />
                 <FilterDropdown
                     options={publishers.map(publisher => publisher.publisher_name)}
                     value={publisher}
+                    fullWidth={true}
                     setvalue={setPublisher}
                 />
                 <FilterDropdown
                     options={sortByValues}
                     value={release}
+                    fullWidth={true}
                     setvalue={setRelease}
                     includeAll={false}
                 />

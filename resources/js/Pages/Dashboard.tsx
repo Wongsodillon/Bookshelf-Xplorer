@@ -23,7 +23,7 @@ type DashboardProps = PageProps & {
 export default function Dashboard({ auth, recommendations, favorites, recentlyViewed, topRated, mostLiked }: DashboardProps) {
 
     function generateMessage() {
-        if (favorites.length === 0 && auth) {
+        if (!auth) {
             return "Sign in to like books and get recommendations.";
         }
         const selectedFavorites = favorites.slice(0, 2);
@@ -38,27 +38,27 @@ export default function Dashboard({ auth, recommendations, favorites, recentlyVi
     return (
         <MainLayout
             user={auth.user}
-            header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">Home</h2>}
+            header={<h2 className="font-semibold text-xl text-white leading-tight">Home</h2>}
         >
             <Head title="Dashboard" />
 
             <div className="py-8 px-4 sm:px-8">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
 
-                    <div className='bg-white p-8 shadow-sm sm:rounded-lg'>
-                        <p className='text-2xl font-semibold text-gray-800'>{generateMessage()}</p>
+                    <div className='bg-dark-blue p-8 shadow-sm sm:rounded-lg'>
+                        <p className='text-2xl font-semibold text-white'>Books you might like</p>
                         <br />
                         <BookSlider books={recommendations}/>
                     </div>
                     <br />
-                    <div className='bg-white p-8 shadow-sm sm:rounded-lg'>
-                        <p className='text-3xl font-semibold text-gray-800'>Top Rated</p>
+                    <div className='bg-dark-blue p-8 shadow-sm sm:rounded-lg'>
+                        <p className='text-3xl font-semibold text-white'>Top Rated</p>
                         <br />
                         <BookSlider books={topRated}/>
                     </div>
                     <br />
-                    <div className='bg-white p-8 shadow-sm sm:rounded-lg'>
-                        <p className='text-3xl font-semibold text-gray-800'>Most Liked</p>
+                    <div className='bg-dark-blue p-8 shadow-sm sm:rounded-lg'>
+                        <p className='text-3xl font-semibold text-white'>Most Liked</p>
                         <br />
                         <BookSlider books={mostLiked}/>
                     </div>

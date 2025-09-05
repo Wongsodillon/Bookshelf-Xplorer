@@ -1,3 +1,4 @@
+import SecondaryButton from "./UI/SecondaryButton";
 
 type PaginationProps = {
     currentPage: number;
@@ -13,13 +14,13 @@ const Pagination = ({ currentPage, itemsPerPage, totalItems, prevPage, nextPage 
             <p className="text-lg">
                 Showing {(currentPage - 1) * itemsPerPage + 1} to {Math.min(currentPage * itemsPerPage, totalItems)} of {totalItems}
             </p>
-            <div className="flex justify-center gap-8">
-                <button onClick={prevPage} className="px-8 h-12 text-base font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700">
+            <div className="flex justify-center gap-6">
+                <SecondaryButton onClick={prevPage} className="px-8 h-12 text-white font-medium rounded-lg">
                     Previous
-                </button>
-                <button onClick={nextPage} className="px-10 h-12 text-base font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700">
+                </SecondaryButton>
+                <SecondaryButton onClick={nextPage} className="px-10 h-12 text-white font-medium rounded-lg">
                     Next
-                </button>
+                </SecondaryButton>
             </div>
         </div>
     );

@@ -1,4 +1,3 @@
-import { User } from '@/types';
 import { FaStar, FaHeart  } from 'react-icons/fa';
 
 const Rating = ({ count, like }: { count?: number, like: boolean }) => {
@@ -13,7 +12,7 @@ const Rating = ({ count, like }: { count?: number, like: boolean }) => {
             }
         }
         if (like) {
-            stars.push(<FaHeart className='text-green-600 h-5 ml-1' key={i} />)
+            stars.push(<FaHeart className='text-light-blue h-5 ml-1' key={i} />)
         }
         return stars
     }

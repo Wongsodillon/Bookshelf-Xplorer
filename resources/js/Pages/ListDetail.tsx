@@ -37,12 +37,10 @@ const ListDetail = ({ auth, list, books }: ListProps) => {
         }
     }, [auth.user, list.user])
 
-    useEffect(() => console.log(list), [])
-
     return (
         <MainLayout user={auth.user}>
             <div className='py-8 px-4 sm:px-8'>
-                <div className='max-w-6xl mx-auto py-6 px-6 lg:py-8 lg:px-16 bg-white shadow sm:rounded-lg'>
+                <div className='max-w-6xl mx-auto py-6 px-6 lg:py-8 lg:px-16 shadow sm:rounded-lg'>
                     <div className='flex flex-col gap-2'>
                         <p className='text-3xl font-bold'>{list.list_name}</p>
                         <p className='text-md text-gray-500'>List by <Link href={route('profile.user', { username: list.user.username })} className='font-bold'>{list.user.name}</Link></p>

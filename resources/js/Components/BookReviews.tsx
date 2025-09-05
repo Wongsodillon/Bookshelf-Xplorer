@@ -15,6 +15,7 @@ import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import Pagination from "./Pagination";
 import useFilterReviews from "@/Hooks/useFilterReviews";
 import FilterDropdown from "./FilterDropdown";
+import SecondaryButton from "./UI/SecondaryButton";
 
 type BookDetailsProps = {
     reviews: Review[];
@@ -43,16 +44,16 @@ const BookReviews = ({ reviews, book }: BookDetailsProps) => {
         <div className="flex flex-col">
             <div className="flex justify-between">
                 <p className="text-2xl font-bold">User Reviews</p>
-                {!yourReview && <div onClick={openReviewModal} className="flex gap-2 p-1 items-center cursor-pointer rounded-sm transition-all duration-200 hover:bg-gray-200">
-                    <p className="text-blue-600 text-xl font-bold">+ Review</p>
-                </div>}
+                {!yourReview && <SecondaryButton onClick={openReviewModal} className="flex gap-2 p-1 items-center cursor-pointer">
+                    <p className="text-light-blue text-lg font-bold">Add Review</p>
+                </SecondaryButton>}
             </div>
             {loadingYourReview && <p>Loading reviews...</p>}
             {errorYourReview && <p>Failed to load reviews</p>}
             {yourReview &&
                <YourReview review={yourReview} refetch={fetchYourReview} openReviewModal={openReviewModal} />
             }
-            <div className="flex flex-col sm:flex-row gap-4 bg-white sm:bg-transparent my-4">
+            <div className="flex flex-col sm:flex-row gap-4 my-4">
                 <FilterDropdown
                     options={sortByOptions.map(s => s)}
                     value={sortBy}

@@ -50,10 +50,6 @@ const EditBook = ({ auth, book, genres, publishers }: EditBookProps) => {
     };
 
     useEffect(() => {
-        console.log(data.image)
-    }, [data.image])
-
-    useEffect(() => {
         if (genre !== 'Genre' && !selectedGenres.includes(genre)) {
             setSelectedGenres(prevGenres => [...prevGenres, genre])
         }

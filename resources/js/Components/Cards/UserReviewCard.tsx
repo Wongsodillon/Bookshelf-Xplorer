@@ -15,7 +15,7 @@ type UserReviewCardProps = {
 const UserReviewCard = ({ review, mine = false, admin = false, onOpen }: UserReviewCardProps) => {
 
     return (
-        <div className="flex gap-4 p-3 hover:bg-gray-100 cursor-pointer duration-200 ease-linear rounded-md" key={review.id}>
+        <div className="flex gap-4 p-3 hover:bg-dark-blue-secondary cursor-pointer duration-150 ease-linear rounded-md" key={review.id}>
             <div className='w-28 h-40 cursor-pointer'>
                 <img src={review.book.book_cover_url} alt="Book" className="object-fit w-full h-full rounded-sm" />
             </div>

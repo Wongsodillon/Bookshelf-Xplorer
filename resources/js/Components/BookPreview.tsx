@@ -13,8 +13,8 @@ const BookPreview = ({ books, count = 4, className = '' }: BookPreviewProps) => 
 
     if (books.length === 0) {
         return (
-            <div className="max-h-40 w-full max-w-[50%] h-64 bg-gray-50 flex items-center justify-center drop-shadow-sm">
-                <p className="text-gray-500 text-lg">No books found</p>
+            <div className="max-h-40 w-full max-w-[50%] h-64 bg-dark-blue-secondary flex items-center justify-center drop-shadow-sm">
+                <p className="text-gray-500 text-lg">No books</p>
             </div>
         );
     }
@@ -27,7 +27,7 @@ const BookPreview = ({ books, count = 4, className = '' }: BookPreviewProps) => 
                 </div>
             ))}
             {books.length < count && Array.from({ length: count - books.length }).map((_, index) => (
-                <div key={index} className="w-full sm:w-1/4 bg-gray-50 border-2 border-gray-100 -ml-0">
+                <div key={index} className="w-full sm:w-1/4 bg-dark-blue-secondary -ml-0">
                 </div>
             ))}
         </div>

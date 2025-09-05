@@ -42,8 +42,8 @@ export default function MainLayout({ user, header, children }: PropsWithChildren
     }, []);
 
     return (
-        <div className="min-h-screen bg-gray-100">
-            <nav className={`bg-white border-b border-gray-100 z-40 fixed w-full transition-shadow duration-300 ${isScrolled ? 'shadow-lg' : ''}`}>
+        <div className="min-h-screen bg-black">
+            <nav className={`bg-dark-blue border-b border-border z-40 fixed w-full transition-shadow duration-300 ${isScrolled ? 'shadow-lg' : ''}`}>
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex justify-between h-16">
                         <div className="flex">
@@ -71,8 +71,8 @@ export default function MainLayout({ user, header, children }: PropsWithChildren
                         <div className="hidden sm:flex sm:items-center sm:ms-6">
                             <form onSubmit={onSearch} className="hidden sm:min-w-96 sm:flex items-center">
                                 <div className="relative w-full">
-                                    <input className="block p-2.5 w-full z-20 text-sm text-gray-900 rounded-e-lg rounded-md border border-gray-300 focus:ring-blue-500 focus:border-blue-500" placeholder="Search..." onChange={e => setData('search', e.target.value)} />
-                                    <button type="submit" className="absolute top-0 end-0 py-2.5 px-4 text-sm font-medium h-full text-white bg-gray-700 rounded-e-lg border border-blue-800 hover:bg-gray-800 focus:ring-2 focus:outline-none focus:ring-indigo-500">
+                                    <TextInput className="p-2.5 w-full z-20" placeholder="Search..." onChange={e => setData('search', e.target.value)} />
+                                    <button type="submit" className="absolute top-0 end-0 py-2.5 px-4 text-sm font-medium h-full text-white bg-light-blue rounded-e-lg border border-border hover:bg-light-blue-hover">
                                         <svg className="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
                                             <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
                                         </svg>
@@ -86,7 +86,7 @@ export default function MainLayout({ user, header, children }: PropsWithChildren
                                         <span className="inline-flex rounded-md">
                                             <button
                                                 type="button"
-                                                className="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150"
+                                                className="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-dark-blue hover:text-slate-400 focus:outline-none transition ease-in-out duration-150"
                                             >
                                                 {user ? user.name : 'Guest'}
 
@@ -131,7 +131,7 @@ export default function MainLayout({ user, header, children }: PropsWithChildren
                         <div className="-me-2 flex items-center sm:hidden">
                             <button
                                 onClick={() => setShowingNavigationDropdown((previousState) => !previousState)}
-                                className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out"
+                                className="inline-flex items-center justify-center p-2 rounded-md text-white hover:bg-light-blue focus:outline-none focus:bg-light-blue focus:text-white transition duration-150 ease-in-out"
                             >
                                 <svg className="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                                     <path
@@ -158,7 +158,7 @@ export default function MainLayout({ user, header, children }: PropsWithChildren
                     <form className="py-2 px-4" onSubmit={onSearch}>
                         <div className="relative w-full">
                             <input className="block p-2.5 w-full z-20 text-sm text-gray-900 rounded-e-lg rounded-md border border-gray-300 focus:ring-blue-500 focus:border-blue-500" placeholder="Search..." onChange={e => setData('search', e.target.value)} />
-                            <button type="submit" className="absolute top-0 end-0 py-2.5 px-4 text-sm font-medium h-full text-white bg-blue-700 rounded-e-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
+                            <button type="submit" className="absolute top-0 end-0 py-2.5 px-4 text-sm font-medium h-full text-white bg-light-blue rounded-e-lg border">
                                 <svg className="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
                                     <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
                                 </svg>
@@ -166,7 +166,7 @@ export default function MainLayout({ user, header, children }: PropsWithChildren
                             </button>
                         </div>
                     </form>
-                    <div className='pt-4 pb-1 border-t border-gray-200'>
+                    <div className='pt-4 pb-1 border-t border-dark-blue-secondary'>
                         <div className='mt-3 space-y-2'>
                             <ResponsiveNavLink href={route('dashboard')} active={route().current('dashboard')}>
                                 Home
@@ -180,13 +180,13 @@ export default function MainLayout({ user, header, children }: PropsWithChildren
                         </div>
                     </div>
 
-                    <div className="pt-4 pb-1 border-t border-gray-200">
+                    <div className="pt-4 pb-1 border-t border-dark-blue-secondary">
                         {user &&
                             <div className="px-4">
-                                <div className="font-medium text-base text-gray-800">
+                                <div className="font-medium text-base text-white">
                                     {user.name}
                                 </div>
-                                <div className="font-medium text-sm text-gray-500">{user.email}</div>
+                                <div className="font-medium text-sm text-slate-400">{user.email}</div>
                             </div>
                         }
                         {user ?
@@ -209,13 +209,13 @@ export default function MainLayout({ user, header, children }: PropsWithChildren
                 </div>
             </nav>
             {header && (
-                <header ref={headerRef} className="bg-white shadow pt-16">
+                <header ref={headerRef} className="bg-dark-blue shadow pt-16">
                     <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">{header}</div>
                 </header>
             )}
 
 
-            <main className={header ? '' : 'pt-16'}>{children}</main>
+            <main className={`${header ? '' : 'pt-16'}`}>{children}</main>
         </div>
     );
 }

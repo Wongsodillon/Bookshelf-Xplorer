@@ -103,13 +103,11 @@ const BookDetails = ({ auth, book, reviews, lists }: BookDetailsProps) => {
         })
     }
 
-    console.log(book)
-
     return (
         <MainLayout user={auth.user}
         >
-            <div className="py-8 px-4 sm:px-8">
-                <div className="max-w-6xl mx-auto py-6 px-6 lg:py-8 lg:px-8 bg-white shadow-sm sm:rounded-lg">
+            <div className="py-8 px-4 sm:px-8 text-white">
+                <div className="max-w-6xl mx-auto py-6 px-6 lg:py-8 lg:px-8 bg-dark-blue shadow-sm sm:rounded-lg">
                     <div className="flex flex-col sm:flex-row gap-8">
                         <div className='w-full h-full sm:w-48 sm:h-76 cursor-pointer'>
                             <img src={book.book_cover_url} alt="Book" className="object-fit w-full h-full" />
@@ -124,17 +122,17 @@ const BookDetails = ({ auth, book, reviews, lists }: BookDetailsProps) => {
                                             <p className="text-xl">{calcRating(book)}/5</p>
                                         </div>
                                     }
-                                    <div onClick={openRatingModal} className="flex gap-2 p-1 items-center cursor-pointer rounded-sm transition-all duration-200 hover:bg-gray-200">
+                                    <div onClick={openRatingModal} className="flex gap-2 p-1 items-center cursor-pointer rounded-sm transition-all duration-200">
                                         {
                                             book.user_rating?.rating ? (
                                                 <>
-                                                    <FaStar className="text-blue-600" size={25}/>
-                                                    <p className="text-xl font-bold text-blue-600">{book.user_rating.rating}/5</p>
+                                                    <FaStar className="text-light-blue" size={25}/>
+                                                    <p className="text-xl font-bold text-light-blue hover:text-light-blue-hover">{book.user_rating.rating}/5</p>
                                                 </>
                                             ) : (
                                                 <>
-                                                    <HiOutlineStar className="text-blue-600" size={25}/>
-                                                    <p className="text-xl font-bold text-blue-600">Rate</p>
+                                                    <HiOutlineStar className="text-light-blue" size={25}/>
+                                                    <p className="text-xl font-bold text-light-blue hover:text-light-blue-hover">Rate</p>
                                                 </>
                                             )
                                         }
@@ -143,14 +141,14 @@ const BookDetails = ({ auth, book, reviews, lists }: BookDetailsProps) => {
                                     <form onSubmit={book.user_like ? unlikeBook : likeBook}>
                                         {
                                             book.user_like ? (
-                                                <SecondaryButton type="submit" className="">
-                                                    <IoMdHeart className="text-green-600" size={25}/>
-                                                    <p className="text-lg ml-1 font-bold text-green-600">Liked</p>
+                                                <SecondaryButton type="submit" className="hover:border-danger">
+                                                    <IoMdHeart className="text-danger" size={22}/>
+                                                    <p className="text-md ml-1 font-bold text-danger">Liked</p>
                                                 </SecondaryButton>
                                             ) : (
-                                                <SecondaryButton type="submit" className="">
-                                                    <IoIosHeartEmpty className="text-green-600" size={25}/>
-                                                    <p className="text-lg ml-1 font-bold text-green-600">Like</p>
+                                                <SecondaryButton type="submit" className="hover:border-danger">
+                                                    <IoIosHeartEmpty className="text-danger" size={22}/>
+                                                    <p className="text-md ml-1 font-bold text-danger">Like</p>
                                                 </SecondaryButton>
                                             )
                                         }
@@ -183,12 +181,12 @@ const BookDetails = ({ auth, book, reviews, lists }: BookDetailsProps) => {
                                     </form>
                                 ) : (
                                     <form onSubmit={markAsRead}>
-                                        <PrimaryButton className="bg-yellow-500 py-4 text-white hover:bg-yellow-600 focus:bg-yellow-600 active:bg-yellow-700 focus:ring-orange-400">
+                                        <SecondaryButton type="submit" className="py-4 text-white">
                                             Mark as Read
-                                        </PrimaryButton>
+                                        </SecondaryButton>
                                     </form>
                                 )}
-                                <PrimaryButton className="bg-zinc-300 py-4 w-full sm:w-auto hover:bg-zinc-400 focus:bg-zinc-500 active:bg-zinc-500 focus:ring-zinc-500" onClick={openAddToListModal}>
+                                <PrimaryButton className="bg-zinc-400 py-4 w-full sm:w-auto hover:bg-zinc-400 focus:bg-zinc-500 active:bg-zinc-500 focus:ring-zinc-500 text-dark-blue hover:text-white" onClick={openAddToListModal}>
                                     Add to My List
                                 </PrimaryButton>
                                 <AddToListModal show={showAddToListModal} onClose={closeAddToListModal} lists={lists} book={book}/>

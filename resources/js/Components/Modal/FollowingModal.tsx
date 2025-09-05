@@ -16,17 +16,24 @@ type FollowingModalProps = {
 const FollowingModal = ({ show, onClose, content }: FollowingModalProps) => {
 
     const user = usePage().props.user as User
-    const { data, error, loading } = useFetch<User[]>(`/${content.toLowerCase()}/${user.username}`)
+    const { data, setData, error, loading } = useFetch<User[]>(`/${content.toLowerCase()}/${user.username}`)
 
+    const closeModal = () => {
+        setData([])
+        onClose()
+    }
+
+    const isEmpty = !loading && data && data.length === 0;
+    
     return (
-        <Modal show={show} onClose={onClose}>
+        <Modal show={show} onClose={closeModal}>
             <div className="p-6">
                 <p className="text-xl">{content}</p>
                 <div className="mt-4">
-                    {loading && <p>Loading...</p>}
                     {error && <p>Error: {error}</p>}
+                    {isEmpty && <p className="text-center text-slate-400">No {content.toLowerCase()} yet.</p>}
                     {data && data.map((user) => (
-                        <div key={user.id} className="flex items-center justify-between p-2 border-b">
+                        <div key={user.id} className="flex items-center justify-between p-2 border-b border-dark-blue">
                             <div className="flex gap-4 items-center">
                                 <ProfilePic img={user.profile_pic_url} size={16} />
                                 <div className="flex flex-col">

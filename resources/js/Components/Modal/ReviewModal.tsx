@@ -7,7 +7,6 @@ import TextArea from "../UI/TextArea";
 import Modal from "../Modal";
 import { useEffect } from "react";
 import Checkbox from "../UI/Checkbox";
-import { Bounce, toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
 import { useToast } from "@/Hooks/useToast";
 
@@ -33,8 +32,6 @@ const ReviewModal = ({ show, onClose, book, refetch }: ReviewModalProps) => {
         errors: '',
         has_spoilers: false,
     })
-
-    console.log(book.user_rating)
 
     const onSubmit: FormEventHandler = e => {
         e.preventDefault()
@@ -74,7 +71,12 @@ const ReviewModal = ({ show, onClose, book, refetch }: ReviewModalProps) => {
                             setValue(newValue)
                             setData('rating', newValue)
                         }}
-                        className="mb-2 border-2 border-gray-200 rounded-lg p-2"
+                        sx={{
+                            '& .MuiRating-iconEmpty': {
+                            color: 'white',
+                            },
+                        }}
+                        className="mb-2 py-1"
                     />
                 </div>
                 <p className="text-lg">Your Review</p>
@@ -93,7 +95,7 @@ const ReviewModal = ({ show, onClose, book, refetch }: ReviewModalProps) => {
                         checked={data.has_spoilers}
                         onChange={(e) => setData('has_spoilers', e.target.checked)}
                     />
-                    <span className="ms-2 text-md text-gray-600">Mark Spoilers</span>
+                    <span className="ms-2 text-md text-white">Mark Spoilers</span>
                 </label>
                 <PrimaryButton>
                     Add Review

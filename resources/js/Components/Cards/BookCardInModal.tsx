@@ -9,7 +9,7 @@ type BookCardInModalProps = {
 const BookCardInModal = ({ book, onClick }: BookCardInModalProps) => {
 
     return (
-        <div className="flex gap-4 border-b-2 border-gray-200 py-4">
+        <div className="flex gap-4 border-b-2 border-dark-blue-secondary py-4">
             <div className='w-36 h-56 cursor-pointer'>
                 <img src={book.book_cover_url} alt="Book" className="object-fit w-full h-full" />
             </div>

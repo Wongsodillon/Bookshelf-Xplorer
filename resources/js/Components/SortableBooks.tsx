@@ -54,17 +54,17 @@ const SortableBooks = ({ books, setBooks }: SortableBooksProps) => {
             }}
         >
             {sortableBooks.map((book) => (
-                <div key={book.id} className="handle flex items-center justify-between bg-white border border-gray-200 p-2 mt-2">
+                <div key={book.id} className="handle flex items-center justify-between bg-dark-blue-secondary p-2 mt-2">
                     <div className="flex items-center gap-4">
                         <img src={book.book.book.book_cover_url} alt={book.book.book.book_title} className="w-16 h-24" />
                         <div className="flex flex-col items-start">
                             <p className="text-lg font-semibold">{book.book.book.book_title}</p>
-                            <p className="text-sm text-gray-500">{book.book.book.book_author}</p>
-                            <p className="text-sm text-gray-500">Added on {formatDate(book.book.created_at)}</p>
+                            <p className="text-sm text-slate-400">{book.book.book.book_author}</p>
+                            <p className="text-sm text-slate-400">Added on {formatDate(book.book.created_at)}</p>
                         </div>
                     </div>
                     <button className="mr-1 sm:mr-4" type="button" onClick={() => handleDelete(book.id)}>
-                        <IoMdClose size={30}/>
+                        <IoMdClose className="text-white" size={30}/>
                     </button>
                 </div>
              ))}

@@ -45,7 +45,7 @@ const BanConfirmationModal = ({ show, onClose, user }: BanConfirmationModalProps
     return (
         <Modal show={show} onClose={onClose}>
             <form className="p-6" onSubmit={user.status == 0 ? onUnban : onBan}>
-                <p className="text-xl text-red-600 mb-2">{user.status == 0 ? 'Unban' : 'Ban'} user</p>
+                <p className="text-xl text-danger mb-2">{user.status == 0 ? 'Unban' : 'Ban'} user</p>
                 <p className="text-xl">{user.username}</p>
                 <p className="text-gray-500">{`Are you sure you want to ${user.status == 1 ? 'ban' : 'unban'} this user?`}</p>
                 <div className="flex justify-end gap-4 mt-4">

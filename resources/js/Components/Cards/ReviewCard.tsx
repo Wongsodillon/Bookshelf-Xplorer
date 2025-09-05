@@ -37,13 +37,13 @@ const ReviewCard = ({ review }: ReviewCardProps) => {
     }
 
     return (
-        <div key={review.id} className="pb-4 flex flex-col gap-2 border-b-2 border-gray-200">
+        <div key={review.id} className="pb-4 flex flex-col gap-2 border-b-2 border-normal-blue">
             <div className="flex flex-col gap-1 sm:flex-row sm:gap-4">
                 <p className="text-md">Review By <Link href={route('profile.user', { username: review.user.username })} className="font-bold text-xl">{review.user.name}</Link></p>
                 {review.rating && <Rating count={review.rating} like={false} />}
             </div>
             <p>{formatDate(review.created_at)}</p>
-            {review.has_spoiler != 0 && <p className="text-red-500 font-bold">THIS REVIEW MIGHT CONTAIN SPOILERS!</p>}
+            {review.has_spoiler != 0 && <p className="text-danger font-bold">THIS REVIEW MIGHT CONTAIN SPOILERS!</p>}
             {showSpoiler &&
                 <SecondaryButton className="w-48 py-2 px-2" onClick={toggleSpoiler}>
                     Show Spoiler
@@ -54,8 +54,8 @@ const ReviewCard = ({ review }: ReviewCardProps) => {
                     <p>{review.review}</p>
                     <form onSubmit={review.liked ? unlikeReview : likeReview}>
                         <button className="flex gap-2 items-center cursor-pointer" disabled={processing}>
-                            {review.liked ? <GoHeartFill className="text-green-600 text-2xl" /> : <GoHeart className="text-green-600 text-2xl" />}
-                            <p className="text-md font-bold text-green-600">{review.likes_count} Likes</p>
+                            {review.liked ? <GoHeartFill className="text-light-blue text-2xl" /> : <GoHeart className="text-light-blue text-2xl" />}
+                            <p className="text-md font-bold text-light-blue hover:text-light-blue-hover">{review.likes_count} Likes</p>
                         </button>
                     </form>
                 </>

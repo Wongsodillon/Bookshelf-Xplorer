@@ -27,7 +27,7 @@ const LikedReviews = ({ auth, reviews, user = auth.user }: LikedReviewsProps) =>
     return (
         <Liked>
             {reviews.length == 0 && <p className="text-2xl text-center font-bold py-8">No liked reviews yet</p>}
-            <div className="flex flex-col sm:flex-row gap-4 bg-white sm:bg-transparent my-2 ml-2">
+            {reviews.length != 0 && <div className="flex flex-col sm:flex-row gap-4 my-2 ml-2">
                 <FilterDropdown
                     options={sortByOptions.map(s => s)}
                     value={sortBy}
@@ -42,7 +42,7 @@ const LikedReviews = ({ auth, reviews, user = auth.user }: LikedReviewsProps) =>
                     fullWidth={true}
                     includeAll={false}
                 />
-            </div>
+            </div>}
             <div className="grid grid-cols-1 gap-2">
                 {itemsToShow.map(review => (
                     <UserReviewCard review={review}/>

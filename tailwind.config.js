@@ -22,6 +22,17 @@ export default {
             //     'lg': {'max': '1023px'}, // Custom large screen (max-width: 1023px)
             //     'xl': {'max': '1279px'}, // Custom extra large screen (max-width: 1279px)
             // },
+            colors: {
+                "dark-blue": "#162136",
+                "dark-blue-secondary": "#263548",
+                "normal-blue": "#2f4157",
+                "border": "#2A3441",
+                "black": "#071021",
+                "black-secondary": "#010618",
+                "light-blue": "#00a1ff",
+                "light-blue-hover": "#008ecc",
+                "danger": "#ff2e48"
+            }
         },
     },
 
