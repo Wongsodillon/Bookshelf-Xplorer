@@ -1,9 +1,7 @@
 import { LuLayoutDashboard } from "react-icons/lu";
-import NavLink from "./UI/NavLink";
 import SidebarLink from "./UI/SidebarLink";
 import { FaRegUser } from "react-icons/fa";
 import SidebarButton from "./UI/SidebarButton";
-import { useState } from "react";
 import { IoMdClose, IoMdArrowBack } from "react-icons/io";
 
 type SidebarProps = {
@@ -14,7 +12,7 @@ type SidebarProps = {
 const SideBar = ({ show = true, toggleShow }: SidebarProps) => {
 
     return (
-        <aside className={"absolute left-0 top-0 z-50 flex h-screen w-72 lg:min-w-[20%] flex-col overflow-y-hidden bg-gray-800 duration-300 ease-linear lg:static lg:translate-x-0 " + (show ? 'translate-x-0' : '-translate-x-full')}>
+        <aside className={"absolute left-0 top-0 z-50 flex h-screen w-72 border-r border-dark-blue-secondary lg:min-w-[20%] flex-col overflow-y-hidden bg-[#010618] duration-300 ease-linear lg:static lg:translate-x-0 " + (show ? 'translate-x-0' : '-translate-x-full')}>
             <div className="px-6 py-6 flex justify-between items-center">
                 <p className="text-white text-xl font-bold">Bookshelf Xplorer Admin</p>
                 <button onClick={() => toggleShow(false)} className="lg:hidden">

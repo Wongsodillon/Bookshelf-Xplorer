@@ -48,10 +48,10 @@ const UserManagement = ({ auth, users }: UserManagementProps) => {
                     className="w-full"
                     onChange={e => setSearch(e.target.value)}
                 />
-                <div className="flex items-center bg-white px-3 rounded-lg border border-gray-300">
-                    <FaChevronLeft size={20} onClick={prevPage} className="text-gray-600 cursor-pointer hover:text-black"/>
-                    <p className="mx-2 text-gray-600 text-nowrap select-none">{currentPage} / {maxPage}</p>
-                    <FaChevronRight size={20} onClick={nextPage} className="text-gray-600 cursor-pointer hover:text-black"/>
+                <div className="flex items-center bg-dark-blue px-3 rounded-lg border border-dark-blue-secondary">
+                    <FaChevronLeft size={20} onClick={prevPage} className="text-slate-400 cursor-pointer hover:text-light-blue"/>
+                    <p className="mx-2 text-slate-400 text-nowrap select-none">{currentPage} / {maxPage}</p>
+                    <FaChevronRight size={20} onClick={nextPage} className="text-slate-400 cursor-pointer hover:text-light-blue"/>
                 </div>
             </div>
             <Table>
@@ -67,11 +67,11 @@ const UserManagement = ({ auth, users }: UserManagementProps) => {
                     {itemsToShow.map(user => (
                         <TableRow key={user.id}>
                             <TableCell>{user.id}</TableCell>
-                            <TableCell className="flex items-center font-medium gap-4 text-gray-900">
+                            <TableCell className="flex items-center font-medium gap-4">
                                 <ProfilePic img={user.profile_pic_url} size={16}/>
                                 <div>
-                                    <div className="text-md mb-1">{user.name}</div>
-                                    <div className="text-md text-gray-500">{user.username}</div>
+                                    <div className="text-md mb-1 text-white">{user.name}</div>
+                                    <div className="text-md text-slate-400">{user.username}</div>
                                 </div>
                             </TableCell>
                             <TableCell>{user.email}</TableCell>

@@ -13,14 +13,14 @@ const AdminLayout = ({ user, header, children }: PropsWithChildren<{ user: User,
         setShowSidebar(!showSidebar);
     }
     return (
-        <div className="flex h-screen overflow-hidden bg-gray-100">
+        <div className="flex h-screen overflow-hidden bg-black">
             <SideBar show={showSidebar} toggleShow={toggleSidebar}/>
             <div className="flex flex-col gap-4 w-full">
                 <div className="overflow-y-auto overflow-x-hidden relative pb-8 px-4 lg:px-12">
                     <div className="flex justify-between py-8">
                         <div className="flex gap-4 items-center">
-                            <GiHamburgerMenu size={36} className="text-black block lg:hidden p-[4px] border-2 cursor-pointer" onClick={() => setShowSidebar(true)}/>
-                            <h1 className="text-3xl font-bold">{header}</h1>
+                            <GiHamburgerMenu size={36} className="text-white block lg:hidden cursor-pointer" onClick={() => setShowSidebar(true)}/>
+                            <p className="text-3xl text-white font-bold">{header}</p>
                         </div>
                         <Link href={route('logout')} as="button" method="post">
                             <DangerButton>

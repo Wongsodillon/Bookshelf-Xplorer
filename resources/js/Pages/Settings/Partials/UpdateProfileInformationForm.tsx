@@ -43,8 +43,8 @@ export default function UpdateProfileInformation({ mustVerifyEmail, status, clas
     return (
         <section className={className}>
             <header>
-                <h2 className="text-lg font-medium text-gray-900">Profile Information</h2>
-                <p className="mt-1 text-sm text-gray-600">
+                <p className="text-lg font-medium">Profile Information</p>
+                <p className="mt-1 text-sm text-slate-400">
                     Update your account's profile information and email address.
                 </p>
             </header>

@@ -3,7 +3,7 @@ import { PropsWithChildren } from "react";
 const Table = ({ children }: PropsWithChildren) => {
     return (
         <div className="relative overflow-x-auto shadow-md sm:rounded-lg select-none">
-            <table className="w-full text-sm text-left text-gray-500">
+            <table className="w-full text-md text-left text-slate-400">
                 {children}
             </table>
         </div>
@@ -12,7 +12,7 @@ const Table = ({ children }: PropsWithChildren) => {
 
 const TableHeader = ({ children }: PropsWithChildren) => {
     return (
-        <thead className="text-xs text-gray-700 uppercase bg-gray-50">
+        <thead className="text-xs text-slate-400 uppercase bg-dark-blue-secondary">
             {children}
         </thead>
     )
@@ -20,7 +20,7 @@ const TableHeader = ({ children }: PropsWithChildren) => {
 
 const TableRow = ({ children, className = '' }: PropsWithChildren<{ className?: string }>) => {
     return (
-        <tr className={"bg-white border-b " + className}>
+        <tr className={"bg-dark-blue border-b border-slate-400" + className}>
             {children}
         </tr>
     )

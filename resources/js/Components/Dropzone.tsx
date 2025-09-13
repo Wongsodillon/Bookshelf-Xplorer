@@ -26,7 +26,7 @@ const Dropzone = ({ onDrop, img = '', className='' }: DropzoneProps) => {
     return (
         <div
             {...getRootProps()}
-            className={`h-[30rem] sm:h-96 w-full sm:w-72 border border-neutral-200 rounded-md flex items-center justify-center cursor-pointer ${(files.length > 0) || img !== '' ? "p-0" : "p-8"} ` + `${className}`}
+            className={`h-[30rem] sm:h-96 w-full sm:w-72 border-2 border-dark-blue-secondary rounded-md flex items-center justify-center cursor-pointer ${(files.length > 0) || img !== '' ? "p-0" : "p-8"} ` + `${className}`}
         >
             <input {...getInputProps()} />
             {files.length > 0 || (img !== '') ? (
@@ -34,7 +34,7 @@ const Dropzone = ({ onDrop, img = '', className='' }: DropzoneProps) => {
             ) : isDragActive ? (
                     <p>Drop the files here ...</p>
                 ) : (
-                    <p className="text-center">Drag and drop some files here, or click to select files</p>
+                    <p className="text-center text-slate-400">Drag and drop some files here, or click to select files</p>
                 )
             }
         </div>

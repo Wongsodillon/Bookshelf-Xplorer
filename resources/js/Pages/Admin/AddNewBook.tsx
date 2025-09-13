@@ -78,7 +78,7 @@ const AddNewBook = ({ auth, genres, publishers }: AddNewBookProps) => {
 
     return (
         <AdminLayout user={auth.user} header="Add New Book">
-            <form className="flex p-6 bg-white rounded-md flex-col sm:flex-row gap-8" onSubmit={handleSubmit}>
+            <form className="flex p-6 bg-dark-blue rounded-md flex-col sm:flex-row gap-8" onSubmit={handleSubmit}>
                 <div className="flex flex-col gap-4 items-center">
                     <Dropzone onDrop={onDrop} />
                     <InputLabel value="Book Cover" className="text-xl"/>
@@ -112,10 +112,10 @@ const AddNewBook = ({ auth, genres, publishers }: AddNewBookProps) => {
                         />
                         <div className="flex gap-4 flex-wrap mt-3">
                             {selectedGenres.map((g, i) => (
-                                <div key={i} className="bg-gray-100 rounded-md py-3 px-4 text-sm flex items-center gap-2">
-                                    <p className="text-lg">{g}</p>
+                                <div key={i} className="bg-dark-blue-secondary rounded-md py-2 px-4 flex items-center gap-2">
+                                    <p className="text-md text-white">{g}</p>
                                     <button className="cursor-pointer" onClick={() => handleRemoveGenre(g)} type="button">
-                                        <IoMdClose size={24} className="text-gray-600 hover:text-black"/>
+                                        <IoMdClose size={24} className="text-slate-400 hover:text-light-blue"/>
                                     </button>
                                 </div>
                             ))}

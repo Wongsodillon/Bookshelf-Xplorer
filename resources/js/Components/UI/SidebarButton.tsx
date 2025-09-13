@@ -5,9 +5,9 @@ export default function SidebarButton({ active = false, className = '', children
         <Link
             {...props}
             className={
-                'flex items-center p-2 gap-2 cursor-pointer duration-200 ease-linear rounded-md mb-4 hover:bg-gray-700 hover:text-white ' +
+                'flex items-center p-2 gap-2 cursor-pointer duration-200 ease-linear rounded-md mb-4 hover:bg-dark-blue-secondary hover:text-white ' +
                 (active
-                    ? ' bg-gray-700 text-white'
+                    ? ' bg-dark-blue-secondary text-white'
                     : ' ') +
                 className
             }

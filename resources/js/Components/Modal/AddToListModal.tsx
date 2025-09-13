@@ -52,9 +52,9 @@ const AddToListModal = ({ show, onClose, lists, book }: AddToListModalProps ) =>
                                     <BookPreview books={list.list_details.map(detail => detail.book)} className="flex-1" count={3}/>
                                     <div className="flex flex-col gap-2 flex-1">
                                         <div className="flex justify-between">
-                                            <h1 className="text-xl md:text-2xl font-semibold">{list.list_name}</h1>
+                                            <p className="text-xl md:text-2xl font-semibold">{list.list_name}</p>
                                         </div>
-                                        <p>{list.list_details.length} Books</p>
+                                        <p className="text-slate-400">{list.list_details.length} Books</p>
                                         { checkList(list) ?
                                             <PrimaryButton className="max-w-40 py-2" disabled={true}>
                                                 Added

@@ -79,7 +79,7 @@ const EditBook = ({ auth, book, genres, publishers }: EditBookProps) => {
 
     return (
         <AdminLayout user={auth.user} header={`Edit ${book.book_title}`}>
-            <form className="flex p-6 bg-white rounded-md flex-col sm:flex-row gap-8" onSubmit={handleSubmit}>
+            <form className="flex p-6 bg-dark-blue rounded-md flex-col sm:flex-row gap-8" onSubmit={handleSubmit}>
                 <div className="flex flex-col gap-4 items-center">
                     <Dropzone onDrop={onDrop} img={book.book_cover_url}/>
                     <InputLabel value="Book Cover" className="text-xl"/>
@@ -113,10 +113,10 @@ const EditBook = ({ auth, book, genres, publishers }: EditBookProps) => {
                         />
                         <div className="flex gap-4 flex-wrap mt-3">
                             {selectedGenres.map((g, i) => (
-                                <div key={i} className="bg-gray-100 rounded-md py-2 px-4 text-sm flex items-center gap-2">
-                                    <p>{g}</p>
+                                <div key={i} className="bg-dark-blue-secondary rounded-md py-2 px-4 flex items-center gap-2">
+                                    <p className="text-md text-white">{g}</p>
                                     <button className="cursor-pointer" onClick={() => handleRemoveGenre(g)} type="button">
-                                        <IoMdClose size={18} className="text-black"/>
+                                        <IoMdClose size={24} className="text-slate-400 hover:text-light-blue"/>
                                     </button>
                                 </div>
                             ))}
