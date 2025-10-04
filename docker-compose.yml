@@ -1,0 +1,61 @@
+version: "3.8"
+
+services:
+  app:
+    build: .
+    image: bookshelf-xplorer/app:latest
+    depends_on:
+      - db
+    environment:
+      APP_ENV: production
+      APP_DEBUG: "false"
+      APP_KEY: ${APP_KEY}
+      DB_HOST: db
+      DB_DATABASE: ${DB_DATABASE}
+      DB_USERNAME: ${DB_USERNAME}
+      DB_PASSWORD: ${DB_PASSWORD}
+    networks:
+      - appnet
+
+  nginx:
+    image: nginx:stable-alpine
+    depends_on:
+      - app
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx:/etc/nginx/conf.d
+    networks:
+      - appnet
+
+  db:
+    image: mysql:8.0
+    ports:
+        - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - appnet
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:5
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+    environment:
+      PMA_HOST: db
+      PMA_USER: ${DB_USERNAME}
+      PMA_PASSWORD: ${DB_PASSWORD}
+    depends_on:
+      - db
+    networks:
+      - appnet
+volumes:
+  db_data:
+
+networks:
+  appnet:

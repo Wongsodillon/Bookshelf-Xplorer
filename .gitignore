@@ -16,3 +16,14 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
+
+node_modules
+client/node_modules
+vendor
+.env
+.env.*
+.git
+.gitignore
+docker-compose.override.yml
+.DS_Store
+storage/*.key
