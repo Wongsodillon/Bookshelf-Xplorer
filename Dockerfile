@@ -32,7 +32,7 @@ COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
 WORKDIR /app
 COPY composer.json composer.lock ./
-RUN composer install --prefer-dist --no-dev --no-scripts --no-interaction --no-progress --optimize-autoloader
+RUN composer install --prefer-dist --no-scripts --no-interaction --no-progress
 
 COPY . .
 RUN composer dump-autoload --optimize
@@ -57,22 +57,27 @@ COPY --from=composer /app/vendor /var/www/html/vendor
 COPY composer.json composer.lock /var/www/html/
 
 # copy the rest of the app
+# copy the rest of the app
 COPY . /var/www/html
 
-# copy built react assets into public/ (adjust if your build outputs to `dist`)
+# copy built React assets
 COPY --from=node-builder /app/public/build /var/www/html/public/build
 
 # copy entrypoint
 COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 
-# set permissions for storage & cache
-RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
+# ensure permissions so container can boot cleanly
+RUN mkdir -p /var/www/html/storage/app/public \
+    && mkdir -p /var/www/html/storage/framework/{cache,views,sessions} \
+    && mkdir -p /var/www/html/bootstrap/cache \
+    && chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache \
+    && chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
 
 # expose php-fpm port for nginx to connect
 EXPOSE 9000
 
-# use a non-root user (php-fpm runs as www-data inside container)
+# run as www-data (non-root)
 USER www-data
 
 ENTRYPOINT ["docker-entrypoint.sh"]

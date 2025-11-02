@@ -1,10 +1,17 @@
 #!/usr/bin/env bash
 set -e
 
-# this file runs as USER www-data; if you need to run root-only tasks,
-# handle those in the Dockerfile or run docker compose exec as root.
-# Ensure storage and cache dirs exist
-php artisan storage:link || true
+mkdir -p /var/www/html/storage/app/public \
+         /var/www/html/storage/framework/{cache,views,sessions} \
+         /var/www/html/bootstrap/cache
+
+chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
+chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
+
+if [ ! -L /var/www/html/public/storage ]; then
+  echo "Creating storage symlink..."
+  php artisan storage:link || true
+fi
 
 # ensure perms (some CI artifacts might have different owners)
 chown -R www-data:www-data storage bootstrap/cache || true

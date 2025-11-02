@@ -13,5 +13,7 @@ export default defineConfig({
     build: {
         outDir: 'public/build',
         assetsDir: 'static',
-    }
-});
+        manifest: 'manifest.json',
+        emptyOutDir: true
+    },
+})
