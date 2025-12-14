@@ -1,0 +1,50 @@
+version: "3.8"
+
+services:
+  app:
+    environment:
+      APP_ENV: local
+      APP_DEBUG: "true"
+    volumes:
+      - ./app:/var/www/html/app
+      - ./bootstrap/cache:/var/www/html/bootstrap/cache
+      - ./config:/var/www/html/config
+      - ./database:/var/www/html/database
+      - ./public:/var/www/html/public
+      - ./resources:/var/www/html/resources
+      - ./routes:/var/www/html/routes
+      - ./storage:/var/www/html/storage
+    networks:
+      - appnet
+
+  nginx:
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx:/etc/nginx/conf.d
+      - ./public:/var/www/html/public:ro
+      - ./storage:/var/www/html/storage:ro
+    networks:
+      - appnet
+
+  db:
+    ports:
+      - "3306:3306"
+    networks:
+      - appnet
+
+  vite:
+    image: node:20
+    working_dir: /var/www/html
+    command: sh -c "npm install && npm run dev -- --host 0.0.0.0 --port 5173"
+    volumes:
+      - .:/var/www/html
+    ports:
+      - "5173:5173"
+    depends_on:
+      - app
+    networks:
+      - appnet
+
+networks:
+  appnet:

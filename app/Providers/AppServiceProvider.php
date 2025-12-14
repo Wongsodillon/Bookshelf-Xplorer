@@ -22,7 +22,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Paginator::useBootstrap();
-        if (env('APP_ENV') !== 'local') {
+        if (env('FORCE_HTTPS', false)) {
             URL::forceScheme('https');
         }
     }
