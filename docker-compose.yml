@@ -3,9 +3,14 @@ services:
     build: .
     image: bookshelf-xplorer/app:latest
     volumes:
-      - ./:/var/www/html
-      - public_data:/var/www/html/public
-      - storage_data:/var/www/html/storage
+      - ./app:/var/www/html/app
+      - ./bootstrap/cache:/var/www/html/bootstrap/cache
+      - ./config:/var/www/html/config
+      - ./database:/var/www/html/database
+      - ./resources:/var/www/html/resources
+      - ./routes:/var/www/html/routes
+      - ./public:/var/www/html/public
+      - ./storage:/var/www/html/storage
     depends_on:
       - db
     environment:
@@ -27,8 +32,8 @@ services:
       - "80:80"
     volumes:
       - ./nginx:/etc/nginx/conf.d
-      - public_data:/var/www/html/public:ro
-      - storage_data:/var/www/html/storage:ro
+      - ./public:/var/www/html/public:ro
+      - ./storage:/var/www/html/storage:ro
     networks:
       - appnet
 
@@ -58,10 +63,9 @@ services:
       - db
     networks:
       - appnet
+    
 volumes:
   db_data:
-  public_data:
-  storage_data:
 
 networks:
   appnet:
