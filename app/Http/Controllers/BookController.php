@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 use Inertia\Inertia;
 
 class BookController extends Controller
@@ -145,7 +146,6 @@ class BookController extends Controller
 
         $genreIds = Genre::whereIn('genre_name', $request->genre)->pluck('id')->unique();
         $bookCoverUrl = $this->InsertFile($request->file('image'));
-
         $book = new Book();
         $book->book_title = $request->book_title;
         $book->book_author = $request->author;
@@ -162,10 +162,11 @@ class BookController extends Controller
         return redirect()->route('admin.dashboard');
     }
 
-    public function InsertFile($file) {
-        $fileName = time().'_'.$file->getClientOriginalName();
-        Storage::putFileAs('public/books', $file, $fileName);
-        return Storage::url('books/'.$fileName);
+    private function InsertFile($file)
+    {
+        $path = 'books/' . Str::uuid() . '.' . $file->getClientOriginalExtension();
+        $result = Storage::disk('s3')->put($path, file_get_contents($file));
+        return $path;
     }
 
     public function UpdateBook(Request $request) {

@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Support\Facades\Storage;
 
 class Book extends Model
 {
@@ -74,8 +75,6 @@ class Book extends Model
     }
     public function getBookCoverUrlAttribute($value)
     {
-        return $value
-            ? Storage::disk('s3')->url($value)
-            : null;
+        return $value ? Storage::disk('s3')->url($value) : null;
     }
 }
