@@ -72,4 +72,10 @@ class Book extends Model
     {
         return $this->hasOne(Rating::class)->where('user_id', auth()->id())->where('review', '!=', null);
     }
+    public function getBookCoverUrlAttribute($value)
+    {
+        return $value
+            ? Storage::disk('s3')->url($value)
+            : null;
+    }
 }
