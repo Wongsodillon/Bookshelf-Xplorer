@@ -216,12 +216,14 @@ class BookController extends Controller
 
         $publisherId = Publisher::where('publisher_name', $request->publisher)->first()->id;
         $genreIds = Genre::whereIn('genre_name', $request->genre)->pluck('id')->unique();
+        $bookCoverUrl = $book->book_cover_url;
+        if ($bookCoverUrl) {
+            $bookCoverUrl = ltrim(parse_url($bookCoverUrl, PHP_URL_PATH), '/');
+        }
 
         if ($request->hasFile('image')) {
-            $bookCoverUrl = $this->InsertFile($request->file('image'));
             $this->DeleteFile($book->book_cover_url);
-        } else {
-            $bookCoverUrl = $book->book_cover_url;
+            $bookCoverUrl = $this->InsertFile($request->file('image'));
         }
 
         $book->book_title = $request->book_title;
@@ -241,10 +243,14 @@ class BookController extends Controller
         return redirect()->route('admin.dashboard');
     }
 
-    public function DeleteFile($path) {
-        $path = str_replace('/storage', '', $path);
-        if (Storage::disk('public')->exists($path)) {
-            Storage::disk('public')->delete($path);
+    public function DeleteFile($path)
+    {
+        if (!$path) {
+            return;
+        }
+        $key = ltrim(parse_url($path, PHP_URL_PATH), '/');
+        if (Storage::disk('s3')->exists($key)) {
+            Storage::disk('s3')->delete($key);
         }
     }
 
