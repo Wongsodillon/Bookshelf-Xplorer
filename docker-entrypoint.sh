@@ -27,4 +27,8 @@ if [ -z "$APP_KEY" ]; then
   echo "WARNING: APP_KEY is not set. Generate one before going to production."
 fi
 
-exec "$@"
+if [ "$(id -u)" -eq 0 ]; then
+  exec su -s /bin/sh www-data -c "$*"
+else
+  exec "$@"
+fi

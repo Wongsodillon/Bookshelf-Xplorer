@@ -52,7 +52,5 @@ RUN chown -R www-data:www-data /var/www/html
 
 EXPOSE 9000
 
-USER www-data
-
 ENTRYPOINT ["docker-entrypoint.sh"]
 CMD ["php-fpm"]
