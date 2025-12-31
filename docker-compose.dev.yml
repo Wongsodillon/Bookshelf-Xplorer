@@ -5,15 +5,11 @@ services:
     environment:
       APP_ENV: local
       APP_DEBUG: "true"
+      DB_HOST: db
     volumes:
-      - ./app:/var/www/html/app
-      - ./bootstrap/cache:/var/www/html/bootstrap/cache
-      - ./config:/var/www/html/config
-      - ./database:/var/www/html/database
-      - ./public:/var/www/html/public
-      - ./resources:/var/www/html/resources
-      - ./routes:/var/www/html/routes
-      - ./storage:/var/www/html/storage
+      - .:/var/www/html
+      - storage_data:/var/www/html/storage
+      - public_data:/var/www/html/public
     networks:
       - appnet
 
@@ -21,9 +17,9 @@ services:
     ports:
       - "80:80"
     volumes:
-      - ./nginx:/etc/nginx/conf.d
-      - ./public:/var/www/html/public:ro
-      - ./storage:/var/www/html/storage:ro
+      - ./nginx:/etc/nginx/conf.d:ro
+      - ./public:/var/www/html/public
+      - ./storage:/var/www/html/storage
     networks:
       - appnet
 
@@ -48,3 +44,7 @@ services:
 
 networks:
   appnet:
+
+volumes:
+  storage_data:
+  public_data:

@@ -2,25 +2,18 @@ services:
   app:
     build: .
     image: bookshelf-xplorer/app:latest
-    volumes:
-      - ./app:/var/www/html/app
-      - ./bootstrap/cache:/var/www/html/bootstrap/cache
-      - ./config:/var/www/html/config
-      - ./database:/var/www/html/database
-      - ./resources:/var/www/html/resources
-      - ./routes:/var/www/html/routes
-      - ./public:/var/www/html/public
-      - ./storage:/var/www/html/storage
-    depends_on:
-      - db
+    env_file:
+      - .env
     environment:
       APP_ENV: production
       APP_DEBUG: "false"
-      APP_KEY: ${APP_KEY}
       DB_HOST: db
-      DB_DATABASE: ${DB_DATABASE}
-      DB_USERNAME: ${DB_USERNAME}
-      DB_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - storage_data:/var/www/html/storage
+      - public_data:/var/www/html/public
+    depends_on:
+      db:
+        condition: service_healthy
     networks:
       - appnet
 
@@ -31,14 +24,16 @@ services:
     ports:
       - "80:80"
     volumes:
-      - ./nginx:/etc/nginx/conf.d
-      - ./public:/var/www/html/public:ro
-      - ./storage:/var/www/html/storage:ro
+      - ./nginx:/etc/nginx/conf.d:ro
+      - public_data:/var/www/html/public:ro
+      - storage_data:/var/www/html/storage:ro
     networks:
       - appnet
 
   db:
     image: mysql:8.0
+    env_file:
+      - .env
     environment:
       MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
       MYSQL_DATABASE: ${DB_DATABASE}
@@ -46,24 +41,18 @@ services:
       MYSQL_PASSWORD: ${DB_PASSWORD}
     volumes:
       - db_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h localhost -p$${MYSQL_ROOT_PASSWORD} --silent"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
     networks:
       - appnet
-  phpmyadmin:
-    image: phpmyadmin/phpmyadmin:5
-    restart: unless-stopped
-    ports:
-      - "8080:80"
-    environment:
-      PMA_HOST: db
-      PMA_USER: ${DB_USERNAME}
-      PMA_PASSWORD: ${DB_PASSWORD}
-    depends_on:
-      - db
-    networks:
-      - appnet
-    
+
 volumes:
   db_data:
+  storage_data:
+  public_data:
 
 networks:
   appnet:
