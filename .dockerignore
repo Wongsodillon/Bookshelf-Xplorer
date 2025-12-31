@@ -1,4 +1,9 @@
 .git
+.gitignore
+
 node_modules
 vendor
 storage
+
+.env
+.env.*
