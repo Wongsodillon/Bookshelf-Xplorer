@@ -10,7 +10,7 @@ const ProfilePic = ({ img, size }: ProfilePicProps) => {
     const [profilePic, setProfilePic] = useState('');
 
     useEffect(() => {
-        setProfilePic(img ? img : '/storage/profile-pic/none.jpg');
+        setProfilePic(img);
     }, [])
 
     return (

@@ -10,6 +10,7 @@ use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Support\Facades\Storage;
 
 class User extends Authenticatable
 {
@@ -97,5 +98,11 @@ class User extends Authenticatable
     public function Followers(): HasMany
     {
         return $this->HasMany(Following::class, 'following_id');
+    }
+    public function getProfilePicUrlAttribute($value)
+    {
+        if (!$value) return Storage::disk('s3')->url('profile-pic/none.jpg');
+
+        return Storage::disk('s3')->url($value);
     }
 }
