@@ -58,7 +58,7 @@ class UserSeeder extends Seeder
                 "name" => "Admin",
                 "email" => "admin@gmail.com",
                 'email_verified_at' => now(),
-                "password" => Hash::make("admin"),
+                "password" => Hash::make("admin@gmail.com"),
                 "profile_pic_url" => null,
                 "status" => true,
                 'about' => 'I am a software engineer who loves to code and play games. I am also a big fan of anime and manga. I am currently working at a startup company in Jakarta. I am also a part-time lecturer at a university in Jakarta. I am also a part-time content creator on YouTube. I am also a part-time writer on Medium.',
