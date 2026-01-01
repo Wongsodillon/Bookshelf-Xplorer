@@ -1,7 +1,7 @@
 services:
   app:
     build: .
-    image: bookshelf-xplorer/app:latest
+    image: wongsodillon/bookshelf-xplorer
     volumes:
       - ./app:/var/www/html/app
       - ./bootstrap/cache:/var/www/html/bootstrap/cache
