@@ -1,3 +1,59 @@
+# Bookshelf Xplorer
+**Bookshelf Xplorer** is a social reading platform where people can discover books, track what they have read, build custom themed lists, write reviews, and interact with other readers through follows and likes.
+
+## Product Overview
+Bookshelf Xplorer is designed as an end-to-end book community experience.
+
+### What users can do
+- Browse and search the catalog of books.
+- Open detailed book pages with metadata, ratings, and reviews.
+- Add books to a **Read List** (to-be-read) and a **Read Books** history.
+- Rate books and write/delete reviews.
+- Create personal curated lists, edit them, and add books to those lists.
+- Like books, like reviews, and like community lists.
+- Follow/unfollow other users and view followers/following.
+- Visit user profiles to see public activity (reviews, books, lists, liked content).
+- Use role-based admin features to manage books and moderate user access.
+
+### Platform architecture at a glance
+- **Backend:** Laravel (routing, auth, middleware, domain logic).
+- **Frontend:** React + Inertia + TypeScript + Vite.
+- **Data:** MySQL-backed relational schema via Laravel migrations.
+
+## Data Model (Intentional, Not Exhaustive)
+The data model centers around readers, books, and social interactions.
+
+### Core entities
+- **User**: account identity, authentication, profile.
+- **Book**: title-level content users discover and interact with.
+- **Genre / Publisher**: supporting metadata for organizing books.
+- **Rating**: user-to-book score + review content.
+
+### Reading-state and collection entities
+- **ReadList**: books a user plans to read.
+- **ReadBooks**: books a user has completed.
+- **Lists**: custom user-authored collections (e.g., “Best Sci-Fi Starters”).
+- **ListDetails**: join/line-item records connecting books to user lists.
+
+### Social entities
+- **Following**: user-to-user relationship graph.
+- **Likes**: likes on books.
+- **LikedReviews**: likes on review items.
+- **LikedLists**: likes on custom list objects.
+- **RecentlyViewed**: recent interaction history for profile/activity UX.
+
+## What This Project Demonstrates (Explicit Signal)
+This project demonstrates practical full-stack product engineering, including:
+
+- **Domain modeling for social products:** multiple interaction types (ratings, lists, likes, follows) represented as clear relational entities.
+- **Feature-rich REST/web routing in Laravel:** authenticated user flows, profile-driven pages, and admin-only routes protected with middleware.
+- **Modern React-driven UI delivery with Inertia:** SPA-like UX while keeping server-side Laravel conventions.
+- **Portfolio-ready product thinking:** not just CRUD, but engagement loops (discover → review → list → follow → recommend).
+
+---
+
+## Existing UI Screenshots
+
 ### Login
 ![LoginPage](https://github.com/Wongsodillon/Bookshelf-Xplorer/assets/81748327/93895eec-86a4-41c5-b769-e2b0adcbf511)
 
